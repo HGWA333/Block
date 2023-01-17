@@ -69,11 +69,11 @@ const getMessage = (lines) => {
       headers["contentType"].indexOf("application/json") > -1
     ) {
       body = JSON.parse(body);
+    } else if (
+      headers["contentType"].indexOf("application/x-www-form-urlencoded") > -1
+    ) {
+      body = getQuery(body);
     }
-
-    // else {
-    //   headers["contentType"].indexOf("application/json") > -1;
-    // }
   }
   return { headers, body };
 };
