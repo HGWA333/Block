@@ -142,6 +142,6 @@ const DFS_Test = () => {
   a[7].push_back(6);
   // 6과 7을 연결
 
-  BFS_Test(1);
+  DFS__Test(1);
   return 0;
 };

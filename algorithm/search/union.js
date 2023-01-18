@@ -50,9 +50,8 @@
 // 첫 번째 행의 노드 1, 2, 3의 부모는 모두 1이다. 때문에 이 세 가지 노드는 모두 같은 그래프에 속한다고 할 수 있다.
 // Find 알고리즘은 두 개의 노드 중 부모 노드를 확인하여 현재 같은 집합에 속하는지 확인하는 알고리즘이다.
 
-const parent = [];
-
 const getParent = (parent, x) => {
+  let parent = [];
   // getParent는 특정한 노드의 부모를 찾는 용도 함수로 부모 노드를 찾는 함수이다.
   if (parent[x] == x) return x;
   // 만약에 매개변수로 들어온 x의 값이 해당 부모와 값이 같으면 x 자체를 리턴
@@ -63,7 +62,7 @@ const getParent = (parent, x) => {
 
 function UnionParent(parent, a, b) {
   // 두 부모 노드를 합치는 함수
-
+  let parent = [];
   a = getParent(parent, a);
   b = getParent(parent, b);
   // 각각의 부모 값을 구한다.
@@ -77,11 +76,11 @@ function UnionParent(parent, a, b) {
 
 function FindParent(parent, a, b) {
   // 같은 부모를 가지고 있는지 확인하는 용도의 함수
-
+  let parent = [];
   a = getParent(parent, a);
   b = getParent(parent, b);
   if (a == b) return 1;
   // 만약 부모 a와 부모 b가 같다면 1의 값을 리턴한다.
-  return0;
+  return 0;
   // 만약 그렇지 않다면 0의 값을 반환한다.
 }

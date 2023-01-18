@@ -160,6 +160,7 @@ const SCC = () => {
     for (let i = 0; i < a[x].size(); i++) {
       // 인접한 노드를 하나씩 확인 하는 조건
       let y = a[x][i];
+      // [x] = 매개변수로 들어온 값,  [i] = for문 현재 도는 값
       // y는 인접한 노드 자체를 가르킨다.
       if (d[y] == 0) parent = min(parent, DFS(y));
       // 방문하지 않은 이웃 상황
