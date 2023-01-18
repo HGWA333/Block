@@ -6,12 +6,12 @@ const parser = (client, req) => {
     const dataBuffer = Buffer.from(data);
     let contentType = req.headers.accept;
     if (contentType.indexOf("text/html") > -1) contentType = "text/html";
-    client.write(`HTTP/1.1 200 OK 
+    return `HTTP/1.1 200 OK 
 Connection: Close
 Content-Type: ${contentType}; charset=UTF-8
 Content-Length: ${dataBuffer.length}
 
-${dataBuffer.toString()}`);
+${dataBuffer.toString()}`;
   }
   return {
     send: (data) => {

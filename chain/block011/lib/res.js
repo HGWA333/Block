@@ -35,12 +35,12 @@ const parser = (client, req) => {
     // data를 Buffer 형식으로 바꿔준다.
     let contentType = req.headers.accept;
     if (contentType.indexOf("text/html") > -1) contentType = "text/html";
-    client.write(`HTTP/1.1 200 OK 
+    return `HTTP/1.1 200 OK 
 Connection: Close
 Content-Type: ${contentType}; charset=UTF-8
 Content-Length: ${dataBuffer.length}
 
-${dataBuffer.toString()}`);
+${dataBuffer.toString()}`;
   }
   return {
     send: (data) => {
