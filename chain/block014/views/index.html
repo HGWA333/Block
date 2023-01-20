@@ -1,0 +1,21 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <!-- {{변수명}} 형식은 작업자가 수정할 위치를 찾도록 하는 규칙 -->
+    <!-- {{변수명}}은 template.js에서 해당 위치를 찾아서 변수를 바꿔주는 기능을 함. -->
+    <!-- {{변수명}}은 찾는 형태와 사용하는 형태가 일정해야 됨  -->
+    <!-- index.html {{변수명}}  = template.js {{변수명}} 일치 해야지만 찾고 html에 변수로 바꿔줌 -->
+    <style>
+      {{style}}
+    </style>
+  </head>
+  <body>
+    <div class="box">{{text}}</div>
+    <div>나의 이름은 {{name}}</div>
+    <a href="{{link}}">{{linkName}}</a>
+    {{script}}
+  </body>
+</html>
