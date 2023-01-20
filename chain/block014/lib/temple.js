@@ -84,6 +84,8 @@ const createHtml = (fileName, data, { styleName, scriptName }) => {
       `{{script}}`,
       `<script>${ScriptReadLine} </script>`
     );
+
+    // ScriptReadLine은 views/board/index.js 파일 속  const ulElem = document.getElementsByTagName("ul")[0]  axios.get실행
     console.log("ScriptReadLineScriptReadLineScriptReadLine", ScriptReadLine);
     console.log("readLinereadLinereadLinereadLinereadLine", readLine);
   }
