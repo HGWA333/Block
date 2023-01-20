@@ -21,7 +21,7 @@ const createHtml = (fileName, data, { styleName, scriptName }) => {
   const target = path.join(__dirname, "../views", fileName);
   let readLine = fs.readFileSync(target, "utf-8");
 
-  console.log("keys(data)keys(data)keys(data)keys(data):", keys(data));
+  // console.log("keys(data)keys(data)keys(data)keys(data):", keys(data));
   const keys = Object.keys(data);
   // 객체화 된 keys(data)의 값을 배열화로 변환한다.
   // keys의 형태는 객체 형식으로 sting 자료형을 가지고 있다.
@@ -31,10 +31,14 @@ const createHtml = (fileName, data, { styleName, scriptName }) => {
 
   for (let i = 0; i < keys.length; i++) {
     // keys의 형태는 객체이다. 객체의 길이는 객체에 존재하는 프로퍼티의 갯수의 길이다.
-
+    // 현재 keys.length의 길이는 4
+    // keys의 현재 데이터는 [ 'title', 'text', 'link', 'linkName' ]
     if (Array.isArray(data[keys[i]])) {
+      // console.log(
+      //   "Array.isArray(data[keys[i]])Array.isArray(data[keys[i]])",
+      //   Array.isArray(data[keys[i]])
+      // );
       // data로 받은 값이 배열인지 확인 하고 배열이면 실행
-      // {"a","b","1:a"}의 객체의 길이의 값은 3이다.
       // Array.isArray(data[keys[i]))는 data[keys[i]가 배열인지 아닌지 확인
       // data[keys[i]의 형태 = [data[keys[i]]]면 작동
 
