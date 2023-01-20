@@ -23,14 +23,14 @@ const createHtml = (fileName, data, { styleName, scriptName }) => {
 
   // console.log("keys(data)keys(data)keys(data)keys(data):", keys(data));
   const keys = Object.keys(data);
+  // keys(data)의 데이터 형태는 객체 형식으로 sting 자료형을 가지고 있다.
   // 객체화 된 keys(data)의 값을 배열화로 변환한다.
-  // keys의 형태는 객체 형식으로 sting 자료형을 가지고 있다.
   // keys(data)의 형태는 [ 'title', 'text', 'link', 'linkName' ] 이런 형태
   // Object.keys(data)를 keys로 초기화한 데이터는 ["li"] 이런 형태
   console.log("createHtml,,,,,,,,,,,,keys:", keys);
 
   for (let i = 0; i < keys.length; i++) {
-    // keys의 형태는 객체이다. 객체의 길이는 객체에 존재하는 프로퍼티의 갯수의 길이다.
+    // keys의 형태는 객체이다. 객체의 길이는 객체에 존재하는 프로퍼티의 갯수의 길이이다.
     // 현재 keys.length의 길이는 4
     // keys의 현재 데이터는 [ 'title', 'text', 'link', 'linkName' ]
     if (Array.isArray(data[keys[i]])) {
