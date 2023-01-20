@@ -57,9 +57,13 @@ const createHtml = (fileName, data, { styleName, scriptName }) => {
       let subReadLine = "";
 
       for (let j = 0; j < data[keys[i]].length; ++j) {
-        // [ 'li' [생성되는 게시글 인덱스]의길이 ] + 1 일때 작한다.
-
+        // j보다 ['li' [생성되는 게시글 인덱스]의길이]가 클 떄 동작 한다.
+        // console.log(
+        //   " data[keys[i]] data[keys[i]] data[keys[i]] data[keys[i]] data[keys[i]] data[keys[i]]",
+        //   data[keys[i]]
+        // );
         subReadLine += subLine.replace("{{item}}", data[keys[i][j]]);
+
         // subReadLine의 형태는 <li>클라이언트에서 입력한 값<li> 형태다.
       }
       console.log("subReadLinesubReadLinesubReadLinesubReadLine:", subReadLine);
