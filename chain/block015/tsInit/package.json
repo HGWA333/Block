@@ -1,0 +1,11 @@
+{
+  "name": "tsinit",
+  "version": "1.0.0",
+  "description": "- npm i -g typescript 는 node.js에 전역으로 설치 하는 것",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
