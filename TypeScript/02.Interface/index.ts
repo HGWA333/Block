@@ -1,3 +1,5 @@
+// TypeScript 인터페이스
+
 // --- 01. 인터페이스 사용 방법
 
 let user: object;
