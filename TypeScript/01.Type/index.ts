@@ -1,89 +1,72 @@
-// Typescript 자료형
+let age: number = 30;
+let isCar: boolean = true;
 
-let num: number = 1234;
-let str: string = "1234";
-let bool: boolean = true;
-let und: undefined = undefined;
-let nul: null = null;
+// --- 01. 배열 number형 사용할 때
+let a: number[] = [1, 2, 3];
+let a2: Array<number> = [1, 2, 3];
 
-// und = 1234 으로 초기화시 에러가 난다.
-// Typescript는 자료형(Type)을 확인하기 때문에 같은 자료형만 변수에 정의할 수 있다.
+// --- 02. 배열 string형 사용할 때
+let b: string[] = ["a", "b", "c"];
+let b2: Array<string> = ["a", "b", "c"];
 
-num = 4321;
-// console.log(num.length); number 에는 길이가 없기 때문에 오류가 난다.
-// console.log(str.length); string 에는 길이가 있기 때문에 오류가 안난다.
+// --- 03. 튜플 : 각 idx에 자료형을 설정 할 수 있음
+let c: [string, number];
+c = ["z", 1];
+// c2 = [1, "z"];
+// 만약 0번에 string형이 아닌 다른 자료형이 들어가면 에러남
+// 0번 idx에는 string형, 1번 idx에는 number형만 사용할 수 있음
 
-let any: any = undefined;
-any = "1234";
-any = 1234;
-// any는 모든 자료형을 포함한다. 그래서 웬만해서는 사용 안하는 것이 좋다.
-// any를 사용하는 것은 기존 Javascript를 사용하는 것 과 같음
+c[0].toLowerCase();
+// c[1].toLowerCase();
+// 위의 상황은 1번째 idx가 number형식의 자료형 타입이다. number형식에는 toLowerCase를 사용할 수 가 없음 그래서 에러가 난다.
+// 변수 c의 초기 설정을 let c: [string, number]으로 배열의 첫 번째 idx에 string형으로, 두 번째 idx에 number형으로 설정했기 때문
+// 그래서 number타입에 사용할 수 있는 메서드를 사용해야 됨
 
-let unk: unknown = undefined;
-unk = "1234";
+// --- 04. void
+function sayHellow(): void {
+  console.log("hello");
+}
+// 함수 sayHllow()옆에 : vioid를 사용한 이유는 함수 자체에 리턴하는 값이 없을 때는 void를 사용해야 한다.
 
-console.log(any.length); // 길이가 존재 (모든 자료형을 포함하고 있다고 판단하여 각종 메서드, 키를 모두 사용할 수 있다.)
-console.log(unk.length); // 길이가 존재 하지 않음 (자료형을 모른다고 판단하여 각종 메서드, 키를 사용할 수 없다. unk은 Type을 확인 후에 메서드, 키를 사용할 수 있음)
+// --- 05. never
+function showErr(): never {
+  throw new Error();
+}
+// never는 항상 에러를 반환하거나
 
-if (typeof unk == "string") {
-  // unk은 Type을 확인 후에 해당 타입에 대한 메서드, 키를 사용할 수 있다.
-  console.log(unk.length);
+function infLoop(): never {
+  while (true) {}
+}
+// 영원히 끝나지 않고 무한으로 반복하는 함수에 사용한다.
+
+// --- 06. enum : 비슷한 값끼리 묶어 둔 것
+
+enum Os {
+  Window = 7,
+  Ios = 3,
+  Android,
 }
 
-let objNum: { a: number } = { a: 1 };
-let objStr: { a: string } = { a: "1" };
+// enum에 값을 주지 않았을 경우 입력된 순서에 따라 number형으로 0, 1, 2 ... 순으로 값이 정해진다.
+// 또 enum은 양방향으로 매핑이 된다.
 
-let obj: { a: number; b?: string } = { a: 1 };
-// b뒤에 붙은 ?는 string 뿐만 아니라 undefined를 포함한다.
+console.log(Os["Window"]); // "Window" 넣으면 7의 값을 반환함
+console.log(Os[7]); // 7의 값을 넣으면 "Window" 값을 반환함
 
-let numUnd: number | undefined = undefined;
-// |를 사용하여 type를 여러 개 사용할 수 있다.
-// 앞의 자료형이 없으면 뒤에 위치한 자료형을 적용한다.
-
-let objTest: { a: number; b?: string } = { a: 1 };
-// ?는 undefined를 포함한다.
-obj.b = "1234";
-
-let arr: Array<number> = [1, 2, 3];
-// arr.push("abcd");
-// Array 배열은 number형으로 설정을 해 놓아서 arr.push "abcd" string형을 넣을 수 없다.
-
-let arr1: [number, string] = [1, "1"];
-// arr1.push(1)
-
-let arr2: string[] = ["1", "a", "b"];
-// arr1.push("abc")
-
-let arr3: Array<any> = [undefined, null, 1, "abc"];
-// 웬만해선 사용하지 말 것
-
-function funcA(): void {
-  // return이 없기 때문에 void type을 사용한다.
-  // 리턴이 없을 때 사용
-  console.log("funcA");
+enum Os1 {
+  Window = "win",
+  Ios = "ios",
+  Android = "and",
 }
 
-const funcB = function (): number {
-  return 1;
-  // 만약 number 타입에서 return이 없으면 에러가 난다.
-};
+// 위와 같은 상황은 단방향으로 매핑이 된다. 즉 string 형식으로만 값을 반환한다.
 
-const funcC = function (): string {
-  return "abc";
-  // 만약 string 타입에서 return이 없으면 에러가 난다.
-};
+let myOs: Os1;
+// myOs는 Os1이다. 라고 초기화를 하면 Os1의 데이터 Window, Ios, Android만 사용이 가능하다.
+// myOs = Os.Window 처럼 특정 값만 입력하는 것을 강제할 수 있다.
+// enum을 사용할 때는 특정 값이 공통점이 있을 때 사용을 한다.
 
-// 함수의 return에 대한 type은 () 뒤에 붙인다.
+// --- 07. null, undefined
 
-function sumA(a: number, b: number): number {
-  return a + b;
-}
-// 함수 뿐만 아니라 매개변수에도 타입을 붙혀준다.
-
-function sumB(numbers: { a: number; b: number }): number {
-  return numbers.a + numbers.b;
-}
-
-const sumC = ({ a, b }: { a: number; b: number }): number => {
-  return a + b;
-};
+let n: null = null;
+let u: undefined = undefined;
