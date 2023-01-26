@@ -1,89 +1,111 @@
-// Typescript 자료형
+// Typescript 리터널 타입
 
-let num: number = 1234;
-let str: string = "1234";
-let bool: boolean = true;
-let und: undefined = undefined;
-let nul: null = null;
+// --- 01. 문자열 리터널 타입1
+const userNmae1 = "ho";
+// const로 userNmae1을 초기화 하면 userNmae1은 "ho" 값 자체를 가지고 있다.
+// const로 userNmae1을 초기화한 userNmae1의 타입은 string이지만 다른 값을 가질 수 없다. 그래서 "ho" 값 자체를 가지고 있음
+let userNmae2 = "oh";
+// let로 userNmae2를 초기화 하면 userNmae2는 값이 아닌 string 타입을 가지고 있다고 알려준다.
+// let로 userNmae2를 초기화한 userNmae2는 언제든지 다른 값으로 변화가 가능하여 어떤 타입을 가지고 있는지를 알려준다.
 
-// und = 1234 으로 초기화시 에러가 난다.
-// Typescript는 자료형(Type)을 확인하기 때문에 같은 자료형만 변수에 정의할 수 있다.
+userNmae2 = 3;
+// 이때 userNmae2에 number형 3의 값을 할당하면 에러가난다.
+// 만약 userNmae2에 number형 3의 값을 할당하고 싶다면 userNmae3 처럼 작성하면 된다.
 
-num = 4321;
-// console.log(num.length); number 에는 길이가 없기 때문에 오류가 난다.
-// console.log(str.length); string 에는 길이가 있기 때문에 오류가 안난다.
+let userNmae3: string | number = "hu";
+userNmae3 = 3;
 
-let any: any = undefined;
-any = "1234";
-any = 1234;
-// any는 모든 자료형을 포함한다. 그래서 웬만해서는 사용 안하는 것이 좋다.
-// any를 사용하는 것은 기존 Javascript를 사용하는 것 과 같음
+// 위와 같이 userNmae3 뒤에 타입 string과 number를 넣으면 된다.
+// 이러한 userNmae3 같은 형식이 문자열 리터널 타입이라고 한다.
 
-let unk: unknown = undefined;
-unk = "1234";
+// --- 02. 문자열 리터널 타입2
 
-console.log(any.length); // 길이가 존재 (모든 자료형을 포함하고 있다고 판단하여 각종 메서드, 키를 모두 사용할 수 있다.)
-console.log(unk.length); // 길이가 존재 하지 않음 (자료형을 모른다고 판단하여 각종 메서드, 키를 사용할 수 없다. unk은 Type을 확인 후에 메서드, 키를 사용할 수 있음)
+type TestJob = "policeMan" | "carMan" | "teacherMan";
 
-if (typeof unk == "string") {
-  // unk은 Type을 확인 후에 해당 타입에 대한 메서드, 키를 사용할 수 있다.
-  console.log(unk.length);
+interface User {
+  // User 인터페이스를 만든다.
+  name: string;
+  // name은 string타입
+  job: TestJob;
+  // job은 TestJob타입을 선택
 }
 
-let objNum: { a: number } = { a: 1 };
-let objStr: { a: string } = { a: "1" };
-
-let obj: { a: number; b?: string } = { a: 1 };
-// b뒤에 붙은 ?는 string 뿐만 아니라 undefined를 포함한다.
-
-let numUnd: number | undefined = undefined;
-// |를 사용하여 type를 여러 개 사용할 수 있다.
-// 앞의 자료형이 없으면 뒤에 위치한 자료형을 적용한다.
-
-let objTest: { a: number; b?: string } = { a: 1 };
-// ?는 undefined를 포함한다.
-obj.b = "1234";
-
-let arr: Array<number> = [1, 2, 3];
-// arr.push("abcd");
-// Array 배열은 number형으로 설정을 해 놓아서 arr.push "abcd" string형을 넣을 수 없다.
-
-let arr1: [number, string] = [1, "1"];
-// arr1.push(1)
-
-let arr2: string[] = ["1", "a", "b"];
-// arr1.push("abc")
-
-let arr3: Array<any> = [undefined, null, 1, "abc"];
-// 웬만해선 사용하지 말 것
-
-function funcA(): void {
-  // return이 없기 때문에 void type을 사용한다.
-  // 리턴이 없을 때 사용
-  console.log("funcA");
-}
-
-const funcB = function (): number {
-  return 1;
-  // 만약 number 타입에서 return이 없으면 에러가 난다.
+const user: User = {
+  name: "hey",
+  job: "carMan",
+  // 여기서 job의 프로퍼티는 위에서 타입으로 설정한 TestJob이 가진 "policeMan" | "carMan" | "teacherMan" 이 3개중에서 선택을 하여 사용할 수 있다.
+  // 만약 "policeMan" | "carMan" | "teacherMan" 이 3가지 외에 다른 내용이 들어가면 에러가 난다. 예) "passMan" 에러
 };
 
-const funcC = function (): string {
-  return "abc";
-  // 만약 string 타입에서 return이 없으면 에러가 난다.
-};
+// --- 03. 유니온(Union) 타입
 
-// 함수의 return에 대한 type은 () 뒤에 붙인다.
-
-function sumA(a: number, b: number): number {
-  return a + b;
-}
-// 함수 뿐만 아니라 매개변수에도 타입을 붙혀준다.
-
-function sumB(numbers: { a: number; b: number }): number {
-  return numbers.a + numbers.b;
+interface HightScoolStudent {
+  // HightScoolStudent 인터페이스를 만든다.
+  name: number | string;
+  // name은 number타입 | string타입
+  grade: 1 | 2 | 3;
+  // 여기서 1 | 2 | 3 사이에 있는 | <- 이것을 유니온이라고 부른다.
 }
 
-const sumC = ({ a, b }: { a: number; b: number }): number => {
-  return a + b;
+// --- 04. 식별 가능한 유니온(Union) 타입
+
+interface Car {
+  name: "car";
+  color: string;
+  start(): void;
+}
+interface Mobile {
+  name: "mobile";
+  color: string;
+  call(): void;
+}
+
+function TestGetGift(gift: Car | Mobile) {
+  // getGift함수에 매개변수인 gift에 인터페이스로 설정된 것을 유니온 타입으로 적용 할 수있다. Car | Mobile
+
+  gift.start();
+  // getGift함수의 매개변수 gift에 인터페이스로 설정된 것을 유니온 타입으로 적용 하였더라도 인식을 할 수없는 상황이다.
+  // 왜냐면 인터페이스로 설정된 Car와 Mobile의 name과 color는 사용을 할 수 있지만, start()메서드는 Car는 가지고 있고 Mobile은 없는 상태다.
+  // 그래서 gift.start()를 사용하기 위해서는 Mobile에도 start()가 있다던가 아니면 아래 getGift 함수 처럼 조건식(if문)을 사용하여 car인지 mobile인지 확인하여 설정하면 된다.
+}
+
+function getGift(gift: Car | Mobile) {
+  // getGift함수에 매개변수인 gift에 인터페이스로 설정된 것을 유니온 타입으로 적용 할 수있다. Car | Mobile
+  console.log(gift.color);
+  if (gift.name === "car") {
+    // 여기서 gift.name에 마우스를 올려 보면 name의 프로퍼티가 어떤 것인지 확인 할 수 있다.
+    // gift.name은 interface로 설정한 Car의 name의 "car"이다. 그래서 interface로 설정한 Car에 속한 start() 메서드를 사용한다.
+    gift.start();
+  } else {
+    // gift.name이 "car"가 아니면 유니온 타입으로 설정한 Mobile name의 "mobile"이니 interface로 설정한 Mobile에 속한 call()메서드를 사용한다.
+    gift.call();
+  }
+  // 이때 검사할 항목이 많아지면 가독성을 위해 switch를 사용하는 것이 좋다.
+}
+// 이렇게 위와 같이 동일한 속성을 다르게 해서 구분할 수 있는 것을 식별가능한 유니온 타입이라고 한다.
+
+// --- 05. 교차(Intersection) 타입
+
+interface MyCar {
+  name: string;
+  start(): void;
+}
+interface MyToy {
+  name: string;
+  color: string;
+  preice: number;
+}
+const toyCar: Toy & Car = {
+  // 교차 타입은 Toy & Car에서 보듯 & 기호를 넣어서 사용한다.
+  // & 기호를 넣어 교차타입으로 설정 할 때는 Mycar와 Mytoy의 속성들을 모두 넣어줘야 사용가능하다.
+  // 교차 타입은 인터페이스로 설정한 MyCar, MyToy
+  name: "야타",
+  // name은 MyCar와 MyToy가 동일하게 가지고 있음.
+  start() {},
+  // start() 메서드는 MyCar만 가지고 있음
+  color: "yellow",
+  // color는 MyToy만 가지고 있음
+  preice: 1000,
+  // preice는 MyToy만 가지고 있음
 };
+// 교차 타입은 각 인터페이스로 설정한 기능을 하나로 합쳐주는 기능이다.
