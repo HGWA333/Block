@@ -1,11 +1,11 @@
 let age: number = 30;
 let isCar: boolean = true;
 
-// --- 01. 배열 number형 사용할 때
+// --- 01. 배열 number타입 사용할 때
 let a: number[] = [1, 2, 3];
 let a2: Array<number> = [1, 2, 3];
 
-// --- 02. 배열 string형 사용할 때
+// --- 02. 배열 string타입 사용할 때
 let b: string[] = ["a", "b", "c"];
 let b2: Array<string> = ["a", "b", "c"];
 
@@ -13,8 +13,8 @@ let b2: Array<string> = ["a", "b", "c"];
 let c: [string, number];
 c = ["z", 1];
 // c2 = [1, "z"];
-// 만약 0번에 string형이 아닌 다른 자료형이 들어가면 에러남
-// 0번 idx에는 string형, 1번 idx에는 number형만 사용할 수 있음
+// 만약 0번에 string타입이 아닌 다른 자료형이 들어가면 에러남
+// 0번 idx에는 string타입, 1번 idx에는 number타입만 사용할 수 있음
 
 c[0].toLowerCase();
 // c[1].toLowerCase();
