@@ -93,6 +93,11 @@ console.log("newVerify:", newVerify);
 //  - keyFromPublic에서 'hex' 인코딩이 꼭 있어야 된다. 없으면 코드 터짐
 //  - hash(데이터)와 signature(=서명)과 publicKey(=공개키)가 정확히 일치 하지 않는다. 상대가 보낸 것인지 확신할 수 없기 때문
 
-const myWallet = "0xA3e9Ab71E70086fd470587428aF5c9a003CA0338";
+const myWallet = publickey.slice(26);
+// 이더리움에서 사용하는 방식으로 뒤에서 부터 40자를 사용
+// 66 글자는  02 / 4df0ac249c1419e43da3bc74f333d5888131be0357adbbaf70438803bd721554
+// 66 글자라서 slice(26)을 (66-26) 하여 총 40글자로 맞춘다.
+// 0xA3e9Ab71E70086fd470587428aF5c9a003CA0338에서 0x는 16진수 라는 표시
 
+console.log("myWallet.length", myWallet);
 console.log("myWallet.length", myWallet.length);
