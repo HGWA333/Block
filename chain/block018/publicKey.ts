@@ -1,0 +1,45 @@
+// - npm i elliptic 타원곡선 알고리즘 암호화 라이브러리
+// - npm i -D @types/elliptic 타원곡선 타입스크립트용
+
+import cryptoJS from "crypto-js";
+import elliptic from "elliptic";
+
+const privateKey: string = cryptoJS.lib.WordArray.random(32)
+  .toString()
+  .toUpperCase();
+
+//  Double-And-Add 사용하지 않으면 1.15179238239458248e+77 1.15234..* 10^77 만큼 횟수를 돌린다. 하지만 Double-And-Add를 사용하면 256번 횟수만에 끝냄
+
+const ec: elliptic.ec = new elliptic.ec("secp256k1");
+// 타원 곡선을 생성한다.
+// ec에 전달하는 매개변수 secp256k1는 elliptic에서 제공하는 사전 설정옵션
+// elliptic에서 제공하는 사전 옵션 = secp256k1, p192, p224 등등 있다.
+// secp256k1로 설정하는 이유는 비트코인과 이더리움에서 사용하는 설정으로
+// secp256k1는  y^2 = x^3 + 7 , G = "02...."을 적용시키고, 즉 기준점 G 값을 나타냄.
+
+const keyPair: elliptic.ec.KeyPair = ec.keyFromPrivate(privateKey);
+// 개인키를 사용해서 키페어를 생성하는 것으로 공개키를 생성한다.
+
+const publickey = keyPair.getPublic().encode("hex", true);
+// 생성된 키페어(keyPair)를 사용하여 개인키와 공개키를 연결시킨다.
+
+console.log("privateKey:", privateKey); // 개인키
+console.log("privateKey.length:", privateKey.length);
+console.log("publickey:", publickey); // 공개키
+console.log("publickey.length:", publickey.length);
+// 타원곡선에서 공개키는 찾은 점의 좌표로 x와y 두 수로 이루어져 있다.
+// 공개키는 문자열로 나타낼 시 "x" + "y" = `{x}${y}` 두 좌표를 문자로써 연결한 문자열(string)이다.
+// x, y는 256 bits의 크기를 가진다. 공개키는 (x[25bits] + y[25bits])512 bits의 크기를 가진다. 하지만 x + y는 128자리 수가 너무 길어 (64자 * 2) 너무 길어 압축을 한고, 압축한 자리 수는 64자리 수로 줄인다.
+// x의 값은 그대로 가져오고 y의 값은 짝수일 때 "02", 홀수 일때 "03"을 사용하게 된다.
+
+// 예)
+// [짝수 y값] / [x값]
+//      02 / 4df0ac249c1419e43da3bc74f333d5888131be0357adbbaf70438803bd721554
+
+// [홀수 y값] / [x값]
+//      03 / 4df0ac249c1419e43da3bc74f333d5888131be0357adbbaf70438803bd721554
+// y가 짝수일 때 02를 추가하고 홀수일 때 03을 앞에 추가를 한다.
+
+// [y값 + x값] 압축 안했을 때 표기
+//      04 / fabdf0ac249c1419e43da3bc74f333d5888131be0357adbbaf70438803bd721554
+// x + y를 모두 사용할 때 128자가 아니다. 이럴 때는 앞에 04를 붙이고 130자리(520bits / 65 bytes) 수를 가지게 된다.
