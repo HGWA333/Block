@@ -20,7 +20,7 @@ class Wallet implements IWallet {
 
   constructor(_privateKey: string = "") {
     console.log(
-      "2-3(지갑이 없을 때)/4-4(지갑이 있고 주소 목록이 있는 상황) 지갑 생성 시작"
+      "2-3(지갑이 없어 새로 생성하는 상황)/4-4(지갑이 있고 주소 목록이 있는 상황) 지갑 생성 시작"
     );
 
     this.privateKey = _privateKey || this.getPrivateKey(); // 개인키를 먼저 만들어야 공개키를 만들 수 있음. 그래서 순서가 중요
@@ -29,7 +29,7 @@ class Wallet implements IWallet {
     this.balance = 0;
 
     console.log(
-      "2-6(지갑이 없을 때)/4-7(지갑이 있고 주소 목록이 있는 상황) 지갑 주소 이름으로 파일 생성 후 그 내용으로 개인키 저장"
+      "2-6(지갑 생성이 완료 되고 지갑 주소 이름을 파일로 생성 후 그 내용으로 개인키 저장 하는 상황 )/4-7(지갑이 있고 주소 목록이 있는 상황) 지갑 주소 이름으로 파일 생성 후 그 내용으로 개인키 저장"
     );
     // address가 파일명이 됨
 
@@ -37,21 +37,21 @@ class Wallet implements IWallet {
     fs.writeFileSync(fileName, this.privateKey);
   }
   public getAddress(): string {
-    // 주소 만들어진 용도
+    // 지갑 주소 만드는 용도
     console.log(
-      "2-5(공개키로 지갑 주소 생성하는 상황)/4-6(지갑이 있고 주소 목록이 있는 상황) 공개키로 지갑 주소 생성"
+      "2-5(지갑이 없어 주소를 새로 생성하는 상황)/4-6(지갑이 있고 주소 목록이 있는 상황) 공개키로 지갑 주소 생성"
     );
     return this.publicKey.slice(26);
     // 66자 02 - A3BD734233...  을 앞에서 부터 -26을 하여 총 40자를 가져온다.
   }
 
   public getPrivateKey(): string {
-    // 개인키 가져오는 용도
-    console.log("2-3-1 개인키가 없으면 생성");
+    // 지갑 개인키 만드는 용도
+    console.log("2-3-1 개인키가 없으면 생성 하는 상황");
     return lib.WordArray.random(32).toString().toUpperCase();
   }
   public getPublickKey(): string {
-    // 공개키를 가져오는 용도
+    // 지갑 공개키 만드는 용도
     console.log(
       "2-4(개인키 있을 때 공개키 생성하는 상황)/4-5(지갑이 있고 주소 목록이 있는 상황) 생성된 개인키로 공개키 생성"
     );
@@ -71,7 +71,7 @@ class Wallet implements IWallet {
   static getWalletPrivateKey(_address) {
     // 지갑에서 개인키를 가져오는 용도  매개변수는 주소
     console.log(
-      "4-3(지갑이 있고 지갑 주소가 목록이 있을 때)/5-5 지갑 주소를 파일 명으로 생성한 파일을 불러와서 그 내용의 개인키를 가져온다."
+      "4-3(지갑이 있고 주소 목록이 있는 상황)/5-5(지갑이 있고 주소 목록이 있는 상황) 지갑 주소를 파일 명으로 생성한 파일을 불러와서 그 내용의 개인키를 가져온다."
     );
     const filePath = path.join(addresDir, _address);
     // 파일의 경로를 합치는 용도

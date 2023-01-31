@@ -4,7 +4,9 @@ const privateKeyLi = document.getElementById("walletPrivateKey");
 const balanceLi = document.getElementById("walletBalance");
 
 const info = (_wallet) => {
-  console.log("2-9/4-10 전달받은 지갑 정보(data)를 웹페이지에 출력");
+  console.log(
+    "2-9/4-10(지갑이 있고 주소 목록이 있는 상황) 전달받은 지갑 정보(data)를 웹페이지에 출력"
+  );
 
   addressLi.innerHTML = _wallet.address;
   publicKeyLi.innerHTML = _wallet.publicKey;
