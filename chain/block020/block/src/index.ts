@@ -74,6 +74,7 @@ app.get("/peer", (req: Request, res: Response) => {
 
 app.get("/utxo", (req: Request, res: Response) => {
   res.json(ws.getUtxos);
+  // 라우터 utxo로 요청 받은 데이터는 ws.getUtxos json 형태로 응답
 });
 
 const ports = [

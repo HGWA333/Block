@@ -123,7 +123,8 @@ class createHash{
   0. for문을 사용한 이유는 채굴 시 Output이 1개일 수도 있지만
   0. 채굴이 아닌 거래를 했을 때
   0. UTXO에서 가져 오는 Output 1개 이상으로 즉 2개가 될 수도 있고, 3개가 될 수도 있고 그 이상이 될 수 있기 때문이다.
-  0. 첫 번째 도는 for문은
+  0. 첫 번째 도는 for문은 address의 string 타입 값을 amount는 number 타입 값을 가져온다.
+  0. 그래서 tempTxIn는 tempTxIn: Array<string | number> 이런 타입으로 초기화를 하였다.
 
   1. txOut은 Object.value를 사용하고 가져올 값은 this.txOut[i]형태로 idx 배열의 위치 값을 가져올 것이기 때문이다.
 
@@ -139,10 +140,28 @@ class createUTXO{
 
 ```mermaid
 classDiagram
-setting
+setting --> mineBlock
+mineBlock --> utxos
 class setting{
  1. 기존 chain.ts 파일에 있는 곳의 chain class안에 private로 utxos 프로퍼티 이름을 사용하고 타입은 Array<IUnspentTxOut>으로 설정한다.
-}
+ 2. class Chain에 mineBlock 메서드를 추가하여 설정한다.
+ }
+
+ class mineBlock{
+  1. const txIn는 채굴하는 상황
+  1.첫 번째 매개변수 ""을 넣은 이유는 채굴할 때 input 없기 때문에 "" 빈 값으로 넣었다.
+  1.두 번째 매개변수 this.lastBlock.height + 1를 넣은 이유는 코인베이스 트랜잭션의 특징이다.
+  1.마지막 블록 + 1은 txOutIndex를 블록의 높이로 정의한다.
+
+ 2. const txOut는 상대방이 전송 버튼 눌렀을 때 상황
+ 2. 첫 번째 매개변수 _address는 Postman에서 Body를 Json형식으로 바꾸고 "data":"사용자 아이디"
+ 2. 두 번째 매개변수 50은 "채굴 or 거래시 코인의 변화 된 값"
+  }
+
+  class utxos{
+ 0. createUTXO메서드 역할은 transaction에서 utxo를 생성해서 내보내준다.
+ 0. utxo는 빈 배열로 초기화를 한다. 왜냐면 utxo에 UnspentTxOut이것을 담기 위해서 그렇다.
+ }
 
 ```
 

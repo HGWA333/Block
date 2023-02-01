@@ -115,13 +115,26 @@ class Chain implements IChain {
 
   mineBlock(_address: string) {
     const txIn: ITxInput = new TxIn("", this.lastBlock.height + 1);
-    // this.lastBlock.height + 1를 넣은 이유는 코인베이스 트랜잭션의 특징이다. 마지막 블록 + 1은 txOutIndex를 블록의 높이로 정의한다.
+    // 채굴하는 상황
+    // 첫 번째 매개변수 ""을 넣은 이유는 채굴할 때 input 없기 때문에 "" 빈 값으로 넣었다.
+    // 두 번째 매개변수 this.lastBlock.height + 1를 넣은 이유는 코인베이스 트랜잭션의 특징이다. 마지막 블록 + 1은 txOutIndex를 블록의 높이로 정의한다.
+    // 여기서 this.lastBlock.height 설정 된 값은 0이다.
     const txOut: ITxOutput = new TxOut(_address, 50);
+    //  상대방이 전송 버튼 눌렀을 때 상황
+    //  첫 번째 매개변수 _address는 Postman에서 Body를 Json형식으로 바꾸고 "data":"사용자 아이디"
+    //  두 번째 매개변수 50은 (채굴 or 거래시 코인의 변화 된 값)
     const coinbaseTransaction: Transaction = new Transaction([txIn], [txOut]);
+    // coinbaseTransaction은 채굴 했을 때와 보냈을 때 상황을 설정해둔 txIn, txOut을
+    // Transaction 타입으로 class Transaction을 새로 초기화
     const utxo = coinbaseTransaction.createUTXO();
+    // utxo는 Transaction로 새롭게 초기화한 coinbaseTransaction에 createUTXO()을 사용
     this.utxos.push(...utxo);
+    // utxos는 배열 []형태이다. 이걸 pusu해서 넣을 것이다. 무엇을?
+    // 위에 coinbaseTransaction.createUTXO()으로 초기화한 utxo 이것을
 
+    // 여기서 mineBlock 설정이 끝났다.
     return this.addBlock([JSON.stringify(coinbaseTransaction)]);
+    //  설정이 끝났으니 this.addBlock에 JSON.stringify 객체 형태로 coinbaseTransaction를 담아서 리턴
   }
 }
 

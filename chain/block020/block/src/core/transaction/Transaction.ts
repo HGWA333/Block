@@ -50,6 +50,11 @@ export default class Transaction implements ITransaction {
       }
     }
 
+    console.log("txInStr:::::::::::::", txInStr);
+    // chain폴더의 index.ts Chain 클래스 중 mineBlock 메서드 중 const txIn: ITxInput 참조
+    console.log("txOutStr:::::::::::::", txOutStr);
+    // chain폴더의 index.ts Chain 클래스 중 mineBlock 메서드 const txOut: ITxOutput 참조
+
     return SHA256(txInStr + txOutStr)
       .toString()
       .toUpperCase();
@@ -58,17 +63,21 @@ export default class Transaction implements ITransaction {
   createUTXO(): Array<IUnspentTxOut> {
     // transaction에서 utxo를 생성해서 내보내준다.
     const utxo: Array<IUnspentTxOut> = [];
+    // utxo는 빈 배열로 초기화를 한다. 왜냐면
+    // utxo에 UnspentTxOut이것을 담기 위해
     for (let i = 0; i < this.txOuts.length; ++i) {
+      // this.txOuts.length는 [[ITxOutput], [ITxOutput], [ITxOutput], ...] 이런 형태다.
+
       utxo.push(
         new UnspentTxOut(
-          this.txOuts[i].address,
-          this.txOuts[i].amount,
-          this.hash,
-          i
+          this.txOuts[i].address, // txOuts[i].address 값은 Postman에서 POST 형식에 http://localhost:8080/block/mine 주소로 Body 형식은 raw JSON 형태인 "data":"string 타입 입력 값"
+          this.txOuts[i].amount, // txOuts[i].amount 값은 Chain class에 속해 있는 mineBlock 메서드 중  const txOut: ITxOutput = new TxOut(_address, 50)로 초기화 된 두 번째 매개변수 값
+          this.hash, // hash 값은 this.createHash()에서 SHA256(txInStr + txOutStr)으로 리턴 된 값
+          i // i는 index 위치 값
         )
       );
     }
-
-    return utxo;
+    console.log("utxo::::::::::::", utxo);
+    return utxo; // UnspentTxOut로 push된 utxo를 리턴한다.
   }
 }
