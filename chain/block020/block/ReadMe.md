@@ -117,9 +117,9 @@ class createHash{
   0. 그 이유는 최종적으로 SHA256을 사용하여 Transaction의 hash or Transaction의 ID라고 명칭 하는 것을
   0. toString과 toUpperCase를 사용하여 대문자형태를 갖춘 문자열 string 타입으로 리턴을 할 것이다.
   0. 여기서 txOut과 txIn은 객체 형태이기 때문에 Object.value를 사용하여 객체를 배열화 하고 키가 아닌 값만 가져올 것이다.
-  여기서 가져올 값은 adress(사용자 이름), amount(생성 또는 거래 했을 때 변화하는 코인의 값)
+  0.여기서 가져올 값은 adress(사용자 이름), amount(생성 또는 거래 했을 때 변화하는 코인의 값)
 
-  0. 그리고 이중 for 반복문을 사용한다. for문을 사용한 이유는 채굴 시 Output이 1개일 수도 있지만, 채굴이 아닌 거래를 했을 때 UTXO에서 가져 오는 Output 1개 이상으로 즉 2개가 될 수도 있고, 3개가 될 수도 있고 그 이상이 될 수 있기 때문이다.
+  0. 그리고 이중 for 반복문을 사용한다. for문을 사용한 이유는 채굴 시 Output이 1개일 수도 있지만, 채굴이 아닌 거래를 했을 때 0. UTXO에서 가져 오는 Output 1개 이상으로 즉 2개가 될 수도 있고, 3개가 될 수도 있고 그 이상이 될 수 있기 때문이다.
   0. 첫 번째 도는 for문은
 
   1. txOut은 Object.value를 사용하고 가져올 값은 this.txOut[i]형태로 idx 배열의 위치 값을 가져올 것이기 때문이다.
