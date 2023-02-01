@@ -21,6 +21,7 @@ class Tx In{
 4. txOutIndex는 transaction의 몇 번째 output인지 알기 위해서 Index 이름을 붙히고 number 타입으로 설정 하였다.
 5. transaction에는 output이 채굴 할 때는 1개가 있고, 거래를 할 때는 상황에 따라 다르지만, 최소 1개 이상이 있게 된다.
 6. UTO에서 가져오는 상황에 따라 output 갯 수가 달라짐
+7. signature는 최초 채굴"miner"한 상황이 있을 수 있으므로 선택 연산자"프로퍼티? / signature?"를 사용하여 undefined 값을 받을 수 있도록 설정
 
 }
 class Tx Out{
@@ -58,19 +59,45 @@ Tx In --> Tx Out
 Tx Out --> Tx Transaction
 Tx Transaction --> Tx UnspentTxOut
 class Interface{
-  sender-
+1. Transaction의 기능을 구성하기 위한 인터페이스는 @types에 설정한 것들과 동일하다. 파일은 총 4개가 필요하다.
+2. TxInput.ts, TxOutput.ts, Transaction.ts, UnspentTxOut.ts
 }
 class Tx In{
-  publicKey-공개키
+TxIn은 ITxInput implements를 "인터페이스 상속" 상속 받고
+public"공개"를 사용하여 설정을 해준다.
+public txOutId: string;
+public txOutIndex: number;
+public signature?: string;
+각 프로퍼티 타입 설정은 @types .d.ts 기준과 동일 하다.
+그리고 constructor 생성자로 받는 매개변수 또한 동일하게 적용
 }
 class Tx Out{
- Server에서
+TxOut은 ITxOutput implements를 "인터페이스 상속" 상속 받고
+public"공개"를 사용하여 설정을 해준다.
+public address: string;
+public amount: number;
+각 프로퍼티 타입 설정은 @types .d.ts 기준과 동일 하다.
+그리고 constructor 생성자로 받는 매개변수 또한 동일하게 적용
 }
 class Tx Transaction{
- Server에서
+TxTransaction은 ITxTransaction implements를 "인터페이스 상속" 상속 받고
+public"공개"를 사용하여 설정을 해준다.
+public txIns: Array<ITxInput>;
+public txOuts: Array<ITxOutput>;
+public hash: string;
+각 프로퍼티 타입 설정은 @types .d.ts 기준과 동일 하다.
+그리고 constructor 생성자로 받는 매개변수 또한 동일하게 적용
+단 생성자에서 hash는 this.hash = this.createHash();메서드를 추가 한다. createHash의 리턴 값은 string이다. createHash(): string
 }
 class Tx UnspentTxOut{
- Server에서
+TxUnspentTxOut은 ITxUnspentTxOut implements를 "인터페이스 상속" 상속 받고
+public"공개"를 사용하여 설정을 해준다.
+public address: string;
+public amount: number;
+public txOutId: string;
+public txOutIndex: number;
+각 프로퍼티 타입 설정은 @types .d.ts 기준과 동일 하다.
+그리고 constructor 생성자로 받는 매개변수 또한 동일하게 적용
 }
 
 ```
