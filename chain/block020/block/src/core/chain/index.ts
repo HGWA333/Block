@@ -128,9 +128,10 @@ class Chain implements IChain {
     // Transaction 타입으로 class Transaction을 새로 초기화
     const utxo = coinbaseTransaction.createUTXO();
     // utxo는 Transaction로 새롭게 초기화한 coinbaseTransaction에 createUTXO()을 사용
+    // utxos는 현재 빈 배열 []형태이다. 이걸 pusu해서 넣을 것이다. 무엇을?
+    // 위에 coinbaseTransaction.createUTXO()으로 초기화한 utxo 이것을 분해해서
     this.utxos.push(...utxo);
-    // utxos는 배열 []형태이다. 이걸 pusu해서 넣을 것이다. 무엇을?
-    // 위에 coinbaseTransaction.createUTXO()으로 초기화한 utxo 이것을
+    // utxos를 푸쉬한다 utxo를 ... 분해해서
 
     // 여기서 mineBlock 설정이 끝났다.
     return this.addBlock([JSON.stringify(coinbaseTransaction)]);

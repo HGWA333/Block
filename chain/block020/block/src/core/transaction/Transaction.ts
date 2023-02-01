@@ -65,6 +65,7 @@ export default class Transaction implements ITransaction {
     const utxo: Array<IUnspentTxOut> = [];
     // utxo는 빈 배열로 초기화를 한다. 왜냐면
     // utxo에 UnspentTxOut이것을 담기 위해
+    console.log("this.txOuts:::::::::::", this.txOuts);
     for (let i = 0; i < this.txOuts.length; ++i) {
       // this.txOuts.length는 [[ITxOutput], [ITxOutput], [ITxOutput], ...] 이런 형태다.
 
