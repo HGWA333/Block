@@ -80,7 +80,7 @@ public amount: number;
 그리고 constructor 생성자로 받는 매개변수 또한 동일하게 적용
 }
 class Tx Transaction{
-TxTransaction은 ITxTransaction implements를 "인터페이스 상속" 상속 받고
+Tx Transaction은 ITransaction implements를 "인터페이스 상속" 상속 받고
 public"공개"를 사용하여 설정을 해준다.
 public txIns: Array<ITxInput>;
 public txOuts: Array<ITxOutput>;
@@ -102,28 +102,20 @@ public txOutIndex: number;
 
 ```
 
-- Tx Transaction P2P에 연결
+- class Transaction 설정
 
 ```mermaid
 classDiagram
-Interface --> Tx In
-Tx In --> Tx Out
-Tx Out --> Tx Transaction
-Tx Transaction --> Tx UnspentTxOut
-class Interface{
-  sender-보내는 사람
-
+setting --> createHash
+createHash --> createUTXO
+class setting{
+ 1. Transaction은 ITransaction"인터페이스 상속"을 받고 public 설정과 constructor 생성자 설정은 위 Transaction폴더 .ts 기준 TxTransaction과 동일 하다.
+ 2. Transaction에는 메서드 2개를 사용한다. createHash와 createUTXO를 사용한다.
 }
-class Tx In{
+class createHash{
   publicKey-공개키
 }
-class Tx Out{
- Server에서
-}
-class Tx Transaction{
- Server에서
-}
-class Tx UnspentTxOut{
+class createUTXO{
  Server에서
 }
 
