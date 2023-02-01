@@ -120,3 +120,32 @@ class createUTXO{
 }
 
 ```
+
+- class Transaction Chain 연결
+
+```mermaid
+classDiagram
+setting
+class setting{
+ 1. 기존 chain.ts 파일에 있는 곳의 chain class안에 private로 utxos 프로퍼티 이름을 사용하고 타입은 Array<IUnspentTxOut>으로 설정한다.
+}
+
+```
+
+- class Transaction P2P 설정
+
+```mermaid
+classDiagram
+setting --> route block mine
+route block mine --> route UTXO
+class setting{
+ 1. 기존 src폴더 root에 위치한 index.ts 파일에 route block mine과 route UTXO 곳에 설정을 한다.
+}
+class route block mine{
+  publicKey-공개키
+}
+class route UTXO{
+ Server에서
+}
+
+```
