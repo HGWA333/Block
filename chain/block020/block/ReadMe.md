@@ -121,7 +121,7 @@ class createUTXO{
 
 ```
 
-- class Transaction Chain 연결
+- class Chain에 Transaction 연결
 
 ```mermaid
 classDiagram
@@ -132,7 +132,7 @@ class setting{
 
 ```
 
-- class Transaction P2P 설정
+- Transaction P2P 설정
 
 ```mermaid
 classDiagram
