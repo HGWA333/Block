@@ -1,5 +1,7 @@
 import Block from "@core/block/block";
-import { isErrored } from "stream";
+import Transaction from "@core/transaction/Transaction";
+import TxIn from "@core/transaction/TxInput";
+import TxOut from "@core/transaction/TxOutput";
 
 class Chain implements IChain {
   private chain: Array<IBlock>;
@@ -7,10 +9,18 @@ class Chain implements IChain {
   private BLOCK_GENERATION_INTERVAL: number = 10;
   private TIME_UNIT: number = 60 * 1000;
 
+  private utxos: Array<IUnspentTxOut>;
+
   constructor() {
     this.chain = [];
     const genesis: IBlock = new Block([`제네시스 블록 ${new Date()}`]);
     this.chain.push(genesis);
+
+    this.utxos = [];
+  }
+
+  get getUtxos(): Array<IUnspentTxOut> {
+    return [...this.utxos];
   }
 
   get getChain(): Array<IBlock> {
@@ -101,6 +111,17 @@ class Chain implements IChain {
     return { isError: false, value: undefined };
     // 여기서 value에 undefined 값을 넣어 리턴을 한 이유는
     // replaceChain에 리턴 값에 TResult<undefined, string>를 설정해서 value에 undefined를 넣음
+  }
+
+  mineBlock(_address: string) {
+    const txIn: ITxInput = new TxIn("", this.lastBlock.height + 1);
+    // this.lastBlock.height + 1를 넣은 이유는 코인베이스 트랜잭션의 특징이다. 마지막 블록 + 1은 txOutIndex를 블록의 높이로 정의한다.
+    const txOut: ITxOutput = new TxOut(_address, 50);
+    const coinbaseTransaction: Transaction = new Transaction([txIn], [txOut]);
+    const utxo = coinbaseTransaction.createUTXO();
+    this.utxos.push(...utxo);
+
+    return this.addBlock([JSON.stringify(coinbaseTransaction)]);
   }
 }
 

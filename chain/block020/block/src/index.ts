@@ -11,21 +11,22 @@ app.use(express.json());
 
 // 보안 작업은 보낼때랑 받을 때만 한다.
 // 보안 작업을 하는 이유는 아무나 본인(내) 블록체인 네트워크(서버 또는 peer)에 블록을 추가하지 못하게 하기 위해서
-app.use((req: Request, res: Response, next) => {
-  console.log("5-8 지갑 서버에서 보낸 요청 받음");
-  const baseAuth = req.headers.authorization?.split(" ")[1] || "";
-  console.log("baseAuth :", baseAuth);
-  if (!baseAuth || baseAuth === "") return res.status(401).end();
-  // 인증 정보가 없으면 401(유효 하지 않은 인증)을 응답한다.
-  console.log("check");
 
-  const [userId, userPw] = Buffer.from(baseAuth, "base64")
-    .toString()
-    .split(":");
-  if (userId !== "admin" || userPw !== "1234") return res.status(401).end();
-  console.log("5-9 인증이 확인되면 다음으로 넘어감");
-  next();
-});
+// app.use((req: Request, res: Response, next) => {
+//   console.log("5-8 지갑 서버에서 보낸 요청 받음");
+//   const baseAuth = req.headers.authorization?.split(" ")[1] || "";
+//   console.log("baseAuth :", baseAuth);
+//   if (!baseAuth || baseAuth === "") return res.status(401).end();
+//   // 인증 정보가 없으면 401(유효 하지 않은 인증)을 응답한다.
+//   console.log("check");
+
+//   const [userId, userPw] = Buffer.from(baseAuth, "base64")
+//     .toString()
+//     .split(":");
+//   if (userId !== "admin" || userPw !== "1234") return res.status(401).end();
+//   console.log("5-9 인증이 확인되면 다음으로 넘어감");
+//   next();
+// });
 
 // http 통신에서 header를 이용한 인증 방법
 // Authorization을 사용하는 이유는 아무나 본인 블록체인 네트워크(서버 또는 peer)에 블록을 추가하지 못하게 하기 위해서다.
@@ -38,8 +39,11 @@ app.get("/chains", (req: Request, res: Response) => {
 
 app.post("/block/mine", (req: Request, res: Response) => {
   // 블록생성 용도
-  const { data }: { data: Array<string> } = req.body;
-  const newBlock: IBlock | null = ws.addBlock(data);
+  // const { data }: { data: Array<string> } = req.body;
+  const { data }: { data: string } = req.body;
+  // 채굴시 output에 address or amount 중에서 address 주소만 받기 위해서
+  // const newBlock: IBlock | null = ws.addBlock(data);
+  const newBlock: IBlock | null = ws.mineBlock(data);
   if (newBlock === null) res.send("error data");
   res.json(newBlock);
 });
@@ -66,6 +70,10 @@ app.get("/peer", (req: Request, res: Response) => {
     (item: any) => item._socket.remoteAddress + ":" + item._socket.remotePort
   );
   res.json(sockets);
+});
+
+app.get("/utxo", (req: Request, res: Response) => {
+  res.json(ws.getUtxos);
 });
 
 const ports = [
