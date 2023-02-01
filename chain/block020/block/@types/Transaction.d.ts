@@ -1,7 +1,7 @@
 declare interface ITxOutput {
   // transaction의 결과(output)
   // Tx Out은 transaction의 결과 값으로
-  // 새로운 트랜잭션이 발생 되었을 때 UTO에서 내용을 가져올 때 input이 된다.
+  // 새로운 트랜잭션이 발생 되었을 때 UTXO에서 내용을 가져올 때 input이 된다.
   address: string; // address는 채굴자 혹은 거래를 했을 때 본인 or 상대방이 되기 때문에 string 타입으로 설정
   amount: number; // amount는 채굴 했을 때와 거래를 했을 때 나오는 코인의 수량을 나타내기 때문에 number 타입으로 설정 하였다.
 }
@@ -22,7 +22,7 @@ declare interface ITransaction {
 }
 
 declare interface IUnspentTxOut {
-  // 트랜잭션 안에서 채굴 또는 거래 된 상황 이후에 UTO로 넘어가 현재 내역을 보여준다.
+  // 트랜잭션 안에서 채굴 또는 거래 된 상황 이후에 UTXO로 넘어가 현재 내역을 보여준다.
   // 그리고 새로운 트랜잭션이 발생할 때 가져오고 거래 하고 남은 잔액은 UTO로 넘어가고 남지 않는다면 소멸이 된다.
   address: string; // address가 string 타입인 이유는 채굴 또는 거래를 한 사용자의 이름을 사용한다. 그래서 string 타입으로 설정
   amount: number; // amount가 number 타입인 이유는 채굴 또는 거래를 한 사용자의 잔액을 표시한다. 그래서 number 타입으로 설정
