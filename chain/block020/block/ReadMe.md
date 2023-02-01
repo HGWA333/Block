@@ -114,7 +114,8 @@ class setting{
 }
 class createHash{
   0. createHash메서드의 리턴 값은 string으로 설정 되어있다.
-  그 이유는 최종적으로 SHA256을 사용하여 Transaction의 hash or Transaction의 ID라고 명칭 하는 것을 toString과 toUpperCase를 사용하여 대문자형태를 갖춘 문자열 string 타입으로 리턴을 할 것이다.
+  0. 그 이유는 최종적으로 SHA256을 사용하여 Transaction의 hash or Transaction의 ID라고 명칭 하는 것을
+  0. toString과 toUpperCase를 사용하여 대문자형태를 갖춘 문자열 string 타입으로 리턴을 할 것이다.
   0. 여기서 txOut과 txIn은 객체 형태이기 때문에 Object.value를 사용하여 객체를 배열화 하고 키가 아닌 값만 가져올 것이다.
   여기서 가져올 값은 adress(사용자 이름), amount(생성 또는 거래 했을 때 변화하는 코인의 값)
 
