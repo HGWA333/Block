@@ -27,12 +27,13 @@ app.get("/wallet/list", (req: Request, res: Response) => {
   res.json(Wallet.getList());
   console.log("3-4 가져온 파일 목로으로 응답");
 });
+
 app.get("/wallet/:address", async (req: Request, res: Response) => {
   // 지갑의 리스트 목록의 파람스
   console.log("4-2 GET 메서드, /wallet/ 지갑주소 라우터로 요청 받는다.");
 
-  const address = req.params.address;
-  const privateKey = Wallet.getWalletPrivateKey(address);
+  const address: string = req.params.address;
+  const privateKey: string = Wallet.getWalletPrivateKey(address);
 
   res.json(new Wallet(privateKey));
   console.log("4-8 생성된 지갑을 json 형식으로 응답");

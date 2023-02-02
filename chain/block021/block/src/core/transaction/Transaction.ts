@@ -89,12 +89,13 @@ export default class Transaction implements ITransaction {
       "6-23 트랜잭션 생성 함수 시작 트랜잭션에 필요한 TxIn, TxOut 생성"
     );
     const { sum, txIns } = TxIn.createTxIns(_receivedTx, _myUTXO);
-    // 트랜잭션의 input 값 가져온다.
+    // 트랜잭션의 createTxIns로 만들어진 input 값 가져온다.
     const txOuts = TxOut.createTxOuts(sum, _receivedTx);
-    // 트랜잭션의 output 값 가져온다.
+    // 트랜잭션의 createTxOuts로 만들어진 output 값 가져온다.
     console.log("6-28 트랜잭션 생성");
     const tx = new Transaction(txIns, txOuts);
-    // input과 output의 값을 가져온다.
+    // 만들어진 input과 output의 값을 가져오고 새롭게 생성 되는 Transaction에 넣는다.
+    // 들어간 Transaction은 hash 값으로 변한다. 변하는 hash값은 txIns + txOuts
     return tx;
   }
 }

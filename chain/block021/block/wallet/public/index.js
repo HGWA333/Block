@@ -33,7 +33,6 @@ const getInfo = async (_address) => {
 };
 
 const listUl = document.getElementById("walletList");
-
 document.getElementById("newWalletListBtn").onclick = () => {
   console.log("3-1 목록 가져오기 클릭");
   axios.get("/wallet/list").then(({ data }) => {
@@ -64,7 +63,10 @@ onsubmit = (e) => {
   // 그래서 e.target 앞에 +를 붙여서 앞의 문제를 해결 한다.
 
   const req = {
-    sender: { publicKey, address },
+    sender: {
+      publicKey,
+      address,
+    },
     received,
     amount,
   };
@@ -82,7 +84,6 @@ document.getElementById("blockMineBtn").onclick = () => {
   axios.post("/block/mine", { data: data }).then(() => {
     // 채굴(마이닝) 끝났을 때
     axios.post("/balance", { address: data }).then(({ data }) => {
-      // 채굴 값을 가져온다.
       balanceLi.innerHTML = data.balance;
     });
   });
