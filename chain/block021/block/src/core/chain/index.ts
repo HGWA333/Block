@@ -126,7 +126,7 @@ class Chain implements IChain {
     // 두 번째 매개변수 this.lastBlock.height + 1를 넣은 이유는 코인베이스 트랜잭션의 특징이다. 마지막 블록 + 1은 txOutIndex를 블록의 높이로 정의한다.
     // 여기서 this.lastBlock.height 설정 된 값은 0이다.
     const txOut: ITxOutput = new TxOut(_address, 50);
-    //  상대방이 전송 버튼 눌렀을 때 상황
+    //  채굴 했을 때 보상
     //  첫 번째 매개변수 _address는 Postman에서 Body를 Json형식으로 바꾸고 "data":"사용자 아이디"
     //  두 번째 매개변수 50은 (채굴 or 거래시 코인의 변화 된 값)
     const coinbaseTransaction: Transaction = new Transaction([txIn], [txOut]);

@@ -13,8 +13,9 @@ export enum MessageType {
   // 전체 체인 달라고 하고 준다.
   addBlock = 2,
   // 블록이 추가됐다고 알려주고 뭐가 추가됐는지 알려준다.
+  addTx = 3,
+  // 트랜잭션이 추가
 }
-// 오타 같은 오류를 줄이기 위해서 사용한다.
 
 export interface IMessage {
   // 주고 받을 메세지에 대한 타입
@@ -26,6 +27,14 @@ export interface IMessage {
 }
 
 class P2P extends Chain {
+  // class P2P는 peer들과 블록체인을 P2P통신을 사용하여 공유하기 위해 만듬
+
+  // P2P의 메서드들
+  // connectSocket : 연결된 소켓을 소켓 목록에 추가하고 어디와 연결이 되었는지 확인하는 메서드
+  // listen : 현재 로컬에서 서버를 생성, 배포하는 메서드
+  // addToPeer : 피어들을 추가하며 동기화 하는 메서드
+  // broadcast : 모든 피어에게 내용을 동일하게 전달 하는 메서드
+
   // Chain을 상속받는 이유 : 현재 P2P 서버에 기존의 체인을 상속함으로써 블록 추가 등에 있어서 편함
   private sockets: Array<WebSocket>; // 연결된 peer의 목록
 
@@ -46,6 +55,7 @@ class P2P extends Chain {
     //   - 후에 어디랑 연결됐는지 확인할 때 등 사용한다.
     socket.on("message", (_data: string) => {
       // message 이벤트가 발생하면 로그로 남긴다.
+      // if(global.debug)console.log(_data.toString());
       if (global.debug) console.log("message");
 
       const data: IMessage = JSON.parse(_data.toString());
@@ -105,6 +115,27 @@ class P2P extends Chain {
           };
 
           this.broadcast(message);
+
+          break;
+        }
+        case MessageType.addTx: {
+          const receivedTx = data.payload;
+          if (
+            !receivedTx ||
+            this.getTxPool.find((item) => item.hash === receivedTx.hash)
+          ) {
+            break;
+          }
+          this.addTxpool(receivedTx);
+
+          // 나도 트랜잭션이 추가 된 상태
+          const message: IMessage = {
+            type: MessageType.addTx,
+            payload: receivedTx,
+            msg: "",
+          };
+          this.broadcast(message);
+          // broadcast로 전체에게 알려준다.
 
           break;
         }

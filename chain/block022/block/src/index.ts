@@ -39,8 +39,13 @@ app.get("/chains", (req: Request, res: Response) => {
 
 app.post("/block/mine", (req: Request, res: Response) => {
   if (global.debug) console.log("POST /block/mine");
+  // const { data }: { data: Array<string> } = req.body;
   const { data }: { data: string } = req.body;
+  // const newBlock: IBlock | null = ws.addBlock(data);
   const newBlock: IBlock | null = ws.mineBlock(data);
+  // 상대방 블록 동기화 할 때 addBlock([...this.getTxPool, coinbaseTransaction])
+  // 코인베이스(채굴)된 정보를 맨 뒤에 배치
+
   if (newBlock === null) res.send("error data");
 
   const message: IMessage = {
@@ -70,19 +75,27 @@ app.get("/peer", (req: Request, res: Response) => {
 
 app.post("/transaction/send", (req: Request, res: Response) => {
   if (global.debug) console.log("5-10/6-10 지갑 서버에서 보낸 요청 받음");
+
   if (global.debug) console.log(req.body);
+  // const isValid = Wallet.verify(req.body);
   if (global.debug) console.log("6-11 트랜잭션 추가 함수를 호출");
   const result = Wallet.sendTransaction(req.body, ws.getUtxo);
   if (global.debug) console.log(result);
   if (global.debug) console.log("6-32 트랜잭션이 정상적으로 추가되었는지 확인");
   if (result.isError === true) res.send(result.msg);
   else {
+    ws.addTxpool(result.value);
+
     if (global.debug) console.log("6-33 UTXO 수정 함수 호출");
     ws.updateUTXO(result.value);
     if (global.debug) console.log("6-37 트랜잭션 추가 및 UTXO 수정 끝");
+
     res.end();
   }
   if (global.debug) console.log("5-12 서명 확인 결과 출력");
+  // if(global.debug)console.log(isValid);
+
+  res.end();
 });
 
 app.get("/utxo", (req: Request, res: Response) => {
@@ -91,6 +104,10 @@ app.get("/utxo", (req: Request, res: Response) => {
 
 app.post("/balance", (req: Request, res: Response) => {
   res.json({ balance: Wallet.getBalance(req.body.address, ws.getUtxo) });
+});
+
+app.get("/txpool", (req: Request, res: Response) => {
+  res.json(ws.getTxPool);
 });
 
 const ports = [
