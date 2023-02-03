@@ -90,6 +90,13 @@ app.post("/transaction/send", (req: Request, res: Response) => {
     ws.updateUTXO(result.value);
     if (global.debug) console.log("6-37 트랜잭션 추가 및 UTXO 수정 끝");
 
+    const message: IMessage = {
+      type: MessageType.addTx,
+      payload: result.value,
+      msg: "",
+    };
+    ws.broadcast(message);
+
     res.end();
   }
   if (global.debug) console.log("5-12 서명 확인 결과 출력");

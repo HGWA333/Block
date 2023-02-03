@@ -51,11 +51,11 @@ class Wallet {
         // amount: number;
         // txOutId: string; // transaction의 hash
         // txOutIndex: number; // transaction의 몇번째 output
-        // 값이 들어있다.
+        // 타입이 있다.
 
         .filter((item) => item.address === _address)
         // _utxos.address(사용자 ID) 와 매개변수로 들어온 값 _address(사용자 ID)와 같은 것을 찾는다.
-        // 1개가 될 수도 있고 1개 이상이 될 수도 있다.
+        // item의 address는 1개가 될 수도 있고 1개 이상이 될 수도 있다.
         // 현재 사용자 ID를 필터해서 필터에 걸린 것을 모두 가져온 상태
         .reduce((prev, curr) => prev + curr.amount, 0)
       // 첫 번째 매개변수는 이전 코인 갯 수와 현재 코인 갯 수를 합친다.
