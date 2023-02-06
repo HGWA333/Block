@@ -30,7 +30,7 @@ class Chain implements IChain {
   constructor() {
     this.chain = [];
     const transaction = new Transaction(
-      [new TxIn(`경훈의 제네시스 블록 ${new Date()}`, 0)],
+      [new TxIn(`제네시스 블록 ${new Date()}`, 0)],
       []
     );
 
