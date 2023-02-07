@@ -46,6 +46,8 @@ E-->B-->E
 
 설치 완료 후 관리자 권한으로 터미널 실행 후 설치 명령어
 
+------------- 여기부터 터미널에서 설치 시작 ----------------
+
 1.배포 이미지 관리
 
 ```sh
@@ -103,8 +105,11 @@ exit
 ```
 
 \*. 터미널로 wsl 실행과 ubuntu 실행 했을 때 차이점
-
 터미널 wsl 실행 : 경로가 Users에서 시작
+------------- 여기까지 터미널 설치 작업 끝 ------------------
+
+------------- 여기부터 우분투에서 설치 시작 ----------------
+
 ubuntu 실행 : 최상단 Root에서 시작
 
 # ubuntu 명령어
@@ -128,6 +133,8 @@ ubuntu 실행 : 최상단 Root에서 시작
 - clear : 화면 초기화
 
 - curl : 인터넷 접근 (요청) \* 자주 사용
+
+- chmod : 777
 
 # Node.js
 
@@ -154,10 +161,10 @@ sudo apt-get install nodejs
 
 - node -v : 현재 버전 확인
 
-- WSL에서 Ubuntu를 삭제하고 싶을 때
+# WSL에서 Ubuntu를 삭제하고 싶을 때
 
 ```sh
- wsl -unregister Ubuntu
+ wsl --unregister Ubuntu
 ```
 
 # GETH를 위한 세팅
@@ -205,7 +212,7 @@ git clone https://github.com/ethereum/go-ethereum
   - go-ethereum 폴더에서 아래 명령어 실행
 
   ```sh
-  make geth
+  make all
   ```
 
 - go-ethereum/build/bin 폴더 내에서 geth 실행
@@ -242,3 +249,46 @@ source ~/.bash_profile
 ```
 
 - source는 어디서든지 geth 명령어로 geth 실행가능
+
+```sh
+source ~/.bashrc
+```
+
+- geth 명령어만으로 실행 시 기본적으로 mainet에 접근하도록 되어있다.
+
+```sh
+Cahin ID: 1(mainet)
+```
+
+# private Etherreum Network
+
+- 개인 이더리움 서버를 연다.
+- genesis.json 파일을 만들어서 기본 설정을 입력한다.
+
+```json
+{
+  "difficulty": "200000",
+  "gasLimit": "3100000",
+  "alloc": {
+    "0xA3e9Ab71E70086fd470587428aF5c9a003CA0338": {
+      "balance": "100000000"
+    },
+    "config": {
+      "chainId": 50,
+      "homesteadBlock": 0,
+      "eip150Block": 0,
+      "eip155Block": 0,
+      "eip158Block": 0
+    }
+  }
+}
+```
+
+# nvm 실행 오류 시
+
+```sh
+# Ubuntu 실행 후 아래 명령어들 입력
+source ~/.bashrc
+nvm
+ nvm install 본인nodejs 버전 # 예) nvm install 18.13.0
+```
