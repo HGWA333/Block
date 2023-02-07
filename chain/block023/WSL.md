@@ -134,7 +134,7 @@ ubuntu 실행 : 최상단 Root에서 시작
 
 - curl : 인터넷 접근 (요청) \* 자주 사용
 
-- chmod : 777
+- chmod : 777 
 
 # Node.js
 

@@ -127,8 +127,8 @@ miner.stop() # 채굴 멈춤
 eth.getBlock('latest') # 마지막 블록을 가져온다.
 web3.fromWei(eth.getBalance(eth.accounts[0]), 'ether')
 
-eth.sendTransaction({from:eth.accounts[0], # 트랜잭션 사용
-to:eth.accounts[1],
+eth.sendTransaction({from:eth.accounts[0], # 트랜잭션 보내는 사람
+to:eth.accounts[1], # 트랜잭션 받는 사람
 value:web3.toWei(1,"ether"),}) # 트랜잭션 거래(보낸 사람, 받은 사람) 이후 둘 중 하나가 miner.start() 채굴을 시작해야 거래에 대한  동기화가 됨
 
 ```
@@ -150,10 +150,10 @@ clef newaccount --keystore ~/myGeth/keystore
 - myGeth에 keystore 폴더에 들어가면 clef를 생성한 계정 정보 파일이 있다.
   - clef 명령어 입력 후 이것을 사용할 것인지 묻는 이유는 personal 객체를 없애면서 만들고 있는 도중이라 오류가 많음
 
-# 트랜잭션 할 때 계정 잠금 풀기
+# 트랜잭션 하기 전 계정 잠금 풀기 (# 실행 창 1에서 실행)
 
 ```sh
-geth --datadir ~/myGeth --unlock "지갑 주소 # 서버 실행 후 엔터
+geth --datadir ~/myGeth --unlock "지갑 주소" # 서버 실행 후 엔터 트랜잭션 보내는 사람 주소로만 가능
 ```
 
 1. geth --datadir ~/myGeth --unlock " "0xc6955348bf907edbe38006ba159bd50b4ecd12dc" 입력
