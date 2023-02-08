@@ -1,5 +1,7 @@
 # Geth 실행 시 Ubuntu 창은 총 3개를 사용 (IPC용 , geth실행용, clef 계정 생성용)
 
+## IPC는 Ubuntu로 조작하는 방식
+
 # Private Etherreum Network
 
 ```json
@@ -169,3 +171,14 @@ geth --datadir ~/myGeth --unlock "지갑 주소" # 서버 실행 후 엔터 트�
 - Pwei : 1,000,000,000,000,000,000 wei
 - Ether : 1,000,000,000,000,000,000,000 wei
 - 예) 0.2 Ether 200,000,000,000,000,000,000 wei
+
+# Geth 추가 설명
+
+- datadir 옵션을 사용하지 않았을 때 네트워크 정보가 저장 되는 곳
+
+  - Linux : ~/.ethereum
+  - Mac : ~/.Libraray/Ethereum (기본 숨긴 폴더로 저장 되어있어서 숨긴 폴더 보기로 설정)
+
+- Looking for peers가 계속 나오는 이유
+- peer가 충분히 연결되지 않으면 계속 peer를 추가하도록 시도하기 때문이다.
+- peer의 최대 피어 수는 50개

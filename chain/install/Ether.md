@@ -1,5 +1,5 @@
 ```sh
-eth.sendTransaction({from:eth.accounts[2],to:eth.accounts[0],value:web3.toWei(20,"ether"),})
+eth.sendTransaction({from:eth.accounts[1],to:eth.accounts[2],value:web3.toWei(20,"ether"),})
 ```
 
 geth --datadir ~/myGeth --unlock "0xc6955348bf907edbe38006ba159bd50b4ecd12dc"
