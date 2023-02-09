@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      input,
+      select {
+        display: block;
+        margin: 0.5rem;
+      }
+      section {
+        margin-top: 150px;
+        margin-bottom: 150px;
+        margin-left: 150px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+      <h1>METAMASK 현재 지갑 :<span id="MetaWalletList"></span></h1>
+      <h2>METAMASK 잔액 : <span id="BalanceList"></span> ETH</h2>
+      <button id="enableEth">METAMASK 지갑 계정</button>
+      <button id="checkEthBalance">METAMASK 나의 잔액</button>
+    </section>
+
+    <section>
+      <form id="selectMeta">
+        <input type="text" id="meta" placeholder="metaMask" />
+        <button>계정 이더 확인</button>
+      </form>
+    </section>
+
+    <section>
+      <h1>현재 지갑 :<span id="account"></span></h1>
+      <h2>잔액 : <span id="balance"></span> ETH</h2>
+      <button id="mineStart">채굴 시작</button>
+      <button id="mineStop">채굴 중지</button>
+      <form id="transacTion">
+        <input
+          type="password"
+          id="tranPw"
+          placeholder="Password 10자리를 입력하세요"
+          pattern="[A-Za-z0-9]+"
+        />
+        <input type="text" id="transacTionAccount" placeholder="Account1" />
+        <select id="selectAccount"></select>
+        <input type="number" id="ether" step="0.001" />
+        <button>이더 보내기</button>
+      </form>
+      <form id="newWallet">
+        <input
+          type="password"
+          id="newPw"
+          placeholder="Password 10자리를 입력하세요"
+          pattern="[A-Za-z0-9]+"
+        />
+        <button id="newWalletBtn">계정 생성</button>
+      </form>
+      <ul id="walletList"></ul>
+    </section>
+    <script src="index.js"></script>
+  </body>
+</html>

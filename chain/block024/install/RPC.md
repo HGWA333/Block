@@ -29,11 +29,9 @@ eth,net"
 --allow-insecure-unlock : HTTP 통신으로 계정을 열 수 있게 한다.(unlock) \* 공식 홈페이지에서는 전문가 이외에는 권장하지 않는다.
 --syncmode full : 피어 연결 시 동기화 방법 설정으로 옵션으로 fast, full, light가 있다.
 
-    - fast : 블록 헤더, 최신 1024개의 트랜잭션 동기화로 <최근 삭제>
-    - syncmode 옵션 설정 되지 않았을 때 full이 기본 값이다.
+    - fast : 블록 헤더, 최신 1024개의 트랜잭션 동기화로 syncmode 옵션 설정 되지 않았을 때 full이 기본 값이다.
     - full : 모든 데이터 동기화
     - light : 블록 헤더, 잔액 관련만 동기화
-    - snap : 최근 128개 블록만 동기화, 기본값
 
 --networkid 50 : 개인 이더리움 네트워크 아이디, 체인 아이디와 같게 설정 해야 한다. 뒤에 붙은 50이 ID
 

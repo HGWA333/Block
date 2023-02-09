@@ -18,4 +18,4 @@ curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.
 
 curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "eth_getBalance", "params": ["0xA3e9Ab71E70086fd470587428aF5c9a003CA0338","latest"]}' http://localhost:8080
 
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "miner_setEtherbase", "params": ["0xee208c2983f67eb815e01452087c03ddc268d6ff"]}' http://localhost:8080
+curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "miner_setEtherbase", "params": ["0x95abb6575517C4d0cA15119FF9CEF17A8538A03F"]}' http://localhost:8080
