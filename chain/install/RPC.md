@@ -12,7 +12,13 @@
 - HTTP 통신을 사용하기 때문에 port가 열려있으면 외부에서 조작이 가능하.
 
 ```sh
-geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.corsdomain "*" --http.api "admin,miner,txpool,web3,personal,eth,net" --allow-insecure-unlock --syncmode full --networkid 50  # IPC 서버 여는 것 처럼
+source ~/.bashrc
+```
+
+```sh
+geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.corsdomain "*" --http.api "admin,miner,txpool,web3,personal,eth,net" --allow-insecure-unlock --syncmode full --networkid 50 console  # IPC 서버 오픈
+# console로 들어가면 RPC로 접근을 해서 curl과 같은 명령어를 사용하지 못함.
+# RPC로 접근을 했으니 RPC 명령어를 사용하여 처리를 한다.
 ```
 
 --datadir ~/myGeth : 개인 이더리움 네트워크 데이터 저장 폴더(~/myGeth)
@@ -39,19 +45,21 @@ eth,net"
 
 ## 2번 실행전 해야 될 명령어
 
----------------- 본 게임 시작 ---------------
-
 ```sh
 geth --datadir myGeth init genesis.json
 ```
 
 - 위 명령어 입력후 아래로 진행 하면 됨.
 
-## 2.geth에 HTTP 통신으로 연결
+## 2.geth에 HTTP 통신으로 연결 RPC
+
+- 서버가 오픈 된 상태에서
 
 ```sh
 geth attach http://localhost:8080
 ```
+
+----- Ubuntu 새창을 열고 사용(RPC에 연결 된 창에서 실행하면 안됨.) -----
 
 ## 3.계정 생성 (서버가 연결 된 상태에서)
 
@@ -67,12 +75,12 @@ personal.unlockAccount(eth.accounts[0])
 
 ## 3-2.geth에 HTTP 통신으로 요청
 
-- attach를 하지 않고 HTTP 통신을 사용한다.
+- attach를 하지 않고 HTTP 통신을 사용한다. attach를 실행하지 않은 Ubuntu창에서만 명령어 입력 가능
 
 ## 4.생성된 지갑 조회
 
 ```sh
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "eth_accounts", "params": []}' http://localhost:8080 # 계정을 가져오기 위한 명령어  localhost 대신 http://15.165.160.40:8080를 사용 한 이유는 외부 ip를 이용하기 위해
+curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "eth_accounts", "params": []}' http://127.0.0.1:8080 # 계정을 가져오기 위한 명령어  localhost 대신 http://15.165.160.40:8080를 사용 한 이유는 외부 ip를 이용하기 위해
 ```
 
 ```json
@@ -124,7 +132,7 @@ curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.
 ## 7.계정 언락(unlock)
 
 ```sh
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "personal_unlockAccount", "params": ["0x4c74c5b0b6461877fa4ce24a6a5bc1043e63c557","1234567890"]}' http://localhost:8080 # params ["주소","입력한 10자리 비번"]
+curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "personal_unlockAccount", "params": ["0x4c74c5b0b6461877fa4ce24a6a5bc1043e63c557","password"]}' http://localhost:8080 # params ["주소","입력한 10자리 비번"]
 ```
 
 ```json
