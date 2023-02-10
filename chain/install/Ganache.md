@@ -74,22 +74,22 @@ localhost은 도메인, 호스트 = 127.0.0.1 아이피, 호스트 (집 주소)
 
 - eth
 
-  - accounts
-  - blockNumber
-  - coinbase
-  - getBalance
-  - sendTransaction
+  - eth.accounts
+  - eth.blockNumber
+  - eth.coinbase
+  - eth.getBalance
+  - eth.sendTransaction
 
 - miner
 
-  - start : 자동 마이닝 시작
-  - stop : 자동 마이닝 종료
+  - miner.start : 자동 마이닝 시작
+  - miner.stop : 자동 마이닝 종료
 
 - personal
 
-  - unlockAccounts
-  - newAccounts
-  - sendTransaction : eth의 sendTransaction과 같음.
+  - personal.unlockAccounts
+  - personal.newAccounts
+  - personal.sendTransaction : eth의 sendTransaction과 같음.
 
 ## Ganache 전용 RPC
 

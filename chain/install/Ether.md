@@ -36,7 +36,7 @@ curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.
 
 curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "miner_start", "params": []}' http://127.0.0.1:8080
 
-eth.sendTransaction({from:"0xb10424ed82893beff5584b26c479e9edc17d5981", to: "0x08d91c477faa3174ab14564099f08b346cf026f1", value: 50ether})
+eth.sendTransaction({from:"0xf6cfa43cff2208d299362106b110cf749bfdea68", to:"0xa11a05e3c66e9f82f5b3313a75ce096678894f8a", value: 50})
 
 eth.sendTransaction({from:eth.accounts[1], to:eth.accounts[2], value:web3.toWei(25,"ether")})
 

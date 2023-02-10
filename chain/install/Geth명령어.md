@@ -23,7 +23,7 @@ geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.cor
   eth.mining : 현재 채굴중인지 여부
   eth.getBalance(account) : 계좌 잔고 조회
   eth.getTranaction(tx) : 트랜잭션의 정보
-  eth.sendTransaction({from:account, to:account, value:ether}) : 트랜잭션 보내기
+  eth.sendTransaction({from:"account", to:"account", value:50}) : 트랜잭션 보내기
   eth.sendTransaction({from:eth.accounts[0], to:eth.accounts[1], value:web3.toWei(1,"ether")})
   eth.pendingTransactions : 현재 진행을 기다리고 있는 트랜잭션
 
@@ -31,7 +31,7 @@ geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.cor
   miner.start() : 채굴을 시작
   miner.start(1) : 한 개의 스레드를 이용하여 채굴
   miner.stop() : 채굴을 정지한다.
-  miner.setEtherbase(계좌ID) : coinbase를 계좌로 설정한다.
+  miner.setEtherbase(account) : coinbase를 계좌로 설정한다.
 
 - admin
   admin.nodeinfo : admin의 node정보를 보여준다.
@@ -48,7 +48,7 @@ geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.cor
 
 - personal
   personal.newAccount(): 계좌를 생성하고 명령어를 입력하면 비밀번호 2번을 입력
-  personal.unlockAccount(계좌ID): 계좌의 잠금을 해제한다. 트랜잭션을 발생시키 위해서는 필수적으로 해제해야 됨
+  personal.unlockAccount(account): 계좌의 잠금을 해제한다. 트랜잭션을 발생시키 위해서는 필수적으로 해제해야 됨
 
 ## web3.js에서는 지원이 안되는 명령어
 
