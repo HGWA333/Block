@@ -7,7 +7,11 @@
 - curl은 shell 혹은 Ubuntu에서 사용을 한다.
 
 ```sh
-geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.corsdomain "\*" --http.api "admin,miner,txpool,web3,personal,eth,net" --allow-insecure-unlock --syncmode full --networkid 50 console
+source ~/.bashrc
+```
+
+```sh
+geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.corsdomain "*" --http.api "admin,miner,txpool,web3,personal,eth,net" --allow-insecure-unlock --syncmode full --networkid 1337 console
 ```
 
 - 위 명령어를 입력을 한 순간 RPC에 진입을 한 것이다.

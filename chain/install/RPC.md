@@ -80,7 +80,7 @@ personal.unlockAccount(eth.accounts[0])
 ## 4.생성된 지갑 조회
 
 ```sh
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "eth_accounts", "params": []}' http://127.0.0.1:8080 # 계정을 가져오기 위한 명령어  localhost 대신 http://15.165.160.40:8080를 사용 한 이유는 외부 ip를 이용하기 위해
+curl -X POST -H "content-type:application/json" --data '{"id":1337, "jsonrpc": "2.0", "method": "eth_accounts", "params": []}' http://127.0.0.1:8080 # 계정을 가져오기 위한 명령어  localhost 대신 http://15.165.160.40:8080를 사용 한 이유는 외부 ip를 이용하기 위해
 ```
 
 ```json
@@ -110,7 +110,7 @@ curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.
 ## 5.코인베이스 조회
 
 ```sh
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "eth_coinbase", "params": []}' http://localhost:8080
+curl -X POST -H "content-type:application/json" --data '{"id":1337, "jsonrpc": "2.0", "method": "eth_coinbase", "params": []}' http://localhost:8080
 ```
 
 ```json
@@ -124,7 +124,7 @@ curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.
 ## 6.새로운 계정 생성
 
 ```sh
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "personal_newAccount", "params": ["password"]}' http://localhost:8080
+curl -X POST -H "content-type:application/json" --data '{"id":1337, "jsonrpc": "2.0", "method": "personal_newAccount", "params": ["1234567890"]}' http://localhost:8080
 ```
 
 - ["password"]를 비밀번호로 사용해서 계정 생성으로 password에 사용자가 원하는 임의의 값을 넣어서 사용 할 수 있음
@@ -132,7 +132,7 @@ curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.
 ## 7.계정 언락(unlock)
 
 ```sh
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "personal_unlockAccount", "params": ["0x4c74c5b0b6461877fa4ce24a6a5bc1043e63c557","password"]}' http://localhost:8080 # params ["주소","입력한 10자리 비번"]
+curl -X POST -H "content-type:application/json" --data '{"id":1337, "jsonrpc": "2.0", "method": "personal_unlockAccount", "params": ["0xB10424eD82893BeFF5584B26C479e9edC17D5981","1234567890"]}' http://localhost:8080 # params ["주소","입력한 10자리 비번"]
 ```
 
 ```json
@@ -142,7 +142,7 @@ curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.
 ## 8.채굴 보상 받을 지갑 주소 설정
 
 ```sh
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "miner_setEtherbase", "params": ["0xc6955348bf907edbe38006ba159bd50b4ecd12dc"]}' http://localhost:8080 # method에서 miner_setEtherbase 중 _ 이것은 IPC에서 :와 같다.
+curl -X POST -H "content-type:application/json" --data '{"id":1337, "jsonrpc": "2.0", "method": "miner_setEtherbase", "params": ["0xbe732ec1c43215a62b551515dc8f4ee3d4a4d187"]}' http://localhost:8080 # method에서 miner_setEtherbase 중 _ 이것은 IPC에서 :와 같다.
 ```
 
 ```json

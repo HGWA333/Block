@@ -96,7 +96,8 @@ ethereum.on("connect", handler : (connectInfo :{ chainId : string;
 
 ```js
 ethereum.on("connect", handler : (error :ProviderRpcError) => void) interface ProviderRpcError extends Error{
-    code: number; // 코드는 숫자 타입
+    message: string; // 메세지는 string 타입
+    code: number; // 코드는 number 타입
     data?: unknown; // 데이터는 뭐가 들어올지 몰라 선택 연산자 사용
 }
 ```
