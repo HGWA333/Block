@@ -25,7 +25,8 @@ geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.cor
 --http : HTTP 서버를 배포, IPC로 조작하던 개인 이더리움 네트워크를 HTTP 통신으로 조작
 --http.addr "0.0.0.0" : 요청 가능한 IP 주소 설정, 기본값 127.0.0.1(로컬 IP), 0.0.0.0(모든 IP 허용)은 모든 IP 주소 허용
 -http.port 8080 : 요청 가능한 port 설정, port 설정을 하지 않을 경우 기본값 8545으로 자동 설정
---http.corsdomain "\*" : CORS에 대한 설정으로, 와일드카드(\*)사용 가능. 와일드카드는 전부 허용한다. 단 권장하지 않음.
+--http.corsdomain : CORS에 대한 설정
+"\*" : "\*"는 와일드 카드라고 부르며, 이것은 모든 것을 전부 허용한다. 단 권장하지 않음.
 --http.api : 사용 가능한 RPC를 설정, 기본값은 eth, net, web3가 들어간다.
 "admin,miner,
 txpool,

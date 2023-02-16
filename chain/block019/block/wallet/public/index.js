@@ -40,10 +40,6 @@ document.getElementById("newWalletListBtn").onclick = () => {
     console.log(
       "3-5 파일 목록을 응답 받는다. ul 엘리먼트 내(innerHTML)을 비우고, 받은 파일 목록으로 채운다."
     );
-    listUl.innerHTML = "";
-    data.forEach((item) => {
-      listUl.innerHTML += `<li onclick="getInfo('${item}')">${item}</li>`;
-    });
   });
 };
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>ETH Search</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <script src="../eth/web3.js"></script>
+    <script src="index.js"></script>
+
+    <header id="BlockFlex">
+      <a href="../client/laBlock/index.html" id="BlockNum"
+        ><div></div>
+        Latest Blocks</a
+      >
+      <a href="../client/laTransaction/index.html">Latest Transaction</a>
+    </header>
+
+    <section>
+      <h1>
+        Account
+        <h3>nowAccount : <span id="nowAccount"></span></h3>
+        <h3>txPool : <span id="txPool"></span></h3>
+      </h1>
+    </section>
+
+    <section>
+      <button id="start">시작</button>
+      <button id="stop">멈춰</button>
+      <button id="transacTion">전송</button>
+    </section>
+  </body>
+</html>

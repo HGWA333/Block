@@ -44,10 +44,25 @@ web3.eth.getAccounts().then((_account) => {
   });
 });
 
-// const accT = async () => {
-//   await acc;
-// };
-// accT();
+web3.eth.extend({
+  property: "txpool",
+  methods: [
+    {
+      name: "content",
+      call: "txpool_content",
+    },
+    {
+      name: "inspect",
+      call: "txpool_inspect",
+    },
+    {
+      name: "status",
+      call: "txpool_status",
+    },
+  ],
+});
+
+web3.eth.txpool.status().then(console.log).catch(console.error);
 
 // async 사용시 함수를 만들어서 async, await 사용
 const account = async () => {
@@ -103,7 +118,7 @@ const account = async () => {
   console.log("web3.eth.txpool:", web3.eth.txpool);
 
   const transaction = await web3.eth.getTransaction(
-    "0xfa82ee607580e41d4ba967e1e1ec5de003f137f7630f11c2cd403428c36136f8"
+    "0x10116f438ae0f8cf76a92f0bd8452ce8daf971f5a46b3a50c9b9749cf769508d"
   );
   console.log("getTransaction(transaction hash):", transaction);
 
@@ -150,6 +165,32 @@ const account = async () => {
       },
     });
   };
+
+  // 아래 web3.eth.sendTransaction은 추가 내용으로 큰 의미는 없음 어차피 geth에서 처리를 다해서 응답을 받기 때문이다. 아래 코드는 트랜잭션 발생시 채굴을 해야지 콘솔이 뜨는 추가 설명
+  // web3.eth.sendTransaction({
+  //   // 언락하고 사용
+  //   from: accounts[0],
+  //   to: accounts[1],
+  //   value: web3.utils
+  //     .toWei("1")
+  //     .on("transactionHash", (hash) => {
+  //       // 트랜잭션 보낼 시 해당 트랜잭션의 정보를 기준으로 hash를 생성한다.
+  //       console.log("transactionHash:", hash);
+  //       // 채굴(마이닝) 할 때 콘솔 뜸
+  //     })
+  //     .on("receipt", (receipt) => {
+  //       // block에 추가 시 영수증을 발행한다.
+  //       console.log("receipt:", receipt);
+  //     })
+  //     .on("confirmation", (confirmation, receipt) => {
+  //       // 완료
+  //       console.log("confirmation:", confirmation);
+  //       console.log("receipt", receipt);
+  //     })
+  //     .on("error", (error) => {
+  //       console.log(error);
+  //     }),
+  // });
 };
 account();
 

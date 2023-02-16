@@ -11,7 +11,7 @@ source ~/.bashrc
 ```
 
 ```sh
-geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.corsdomain "*" --http.api "admin,miner,txpool,web3,personal,eth,net" --allow-insecure-unlock --syncmode full --networkid 1337 console
+geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.corsdomain "*" --ws --ws.port 8082 --ws.addr "0.0.0.0" --ws.origins "*" --http.api "admin,miner,txpool,web3,personal,eth,net" --allow-insecure-unlock --syncmode full --networkid 1337 console
 ```
 
 - 위 명령어를 입력을 한 순간 RPC에 진입을 한 것이다.
@@ -35,7 +35,7 @@ geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.cor
   miner.start() : 채굴을 시작
   miner.start(1) : 한 개의 스레드를 이용하여 채굴
   miner.stop() : 채굴을 정지한다.
-  miner.setEtherbase(account) : coinbase를 계좌로 설정한다.
+  miner.setEtherbase(eth.accounts[0]) : coinbase를 계좌로 설정한다.
 
 - admin
   admin.nodeinfo : admin의 node정보를 보여준다.
