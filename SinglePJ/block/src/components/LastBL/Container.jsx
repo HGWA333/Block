@@ -4,6 +4,7 @@ import { getBlock, getBlockNumber } from "../../eth/web3";
 
 const LastBlContainer = () => {
   const [blockNumber, setBlockNumber] = useState(-1);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const [block, setBlock] = useState({});
   const LastBlock = { block, blockNumber };

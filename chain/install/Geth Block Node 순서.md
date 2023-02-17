@@ -13,7 +13,7 @@ source ~/.bashrc
     - ws 웹소켓 영역
 
 ```sh
-geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.corsdomain "*" --ws --ws.port 8082 --ws.addr "0.0.0.0" --ws.origins "*" --http.api "admin,miner,txpool,web3,personal,eth,net" --allow-insecure-unlock --syncmode full --networkid 1337 console
+geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8088 --http.corsdomain "*" --ws --ws.port 8082 --ws.addr "0.0.0.0" --ws.origins "*" --http.api "admin,miner,txpool,web3,personal,eth,net" --allow-insecure-unlock --syncmode full --networkid 1337 console
 ```
 
 - 3. miner.setEtherbase(eth.accounts[0]) 코인 베이스 계좌 설정
