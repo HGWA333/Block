@@ -1,0 +1,90 @@
+@font-face {
+  font-family: ffCondExtraLight;
+  src: url(./FF\ QType\ Pro\ Cond\ Extra\ Light.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffCondBold;
+  src: url(./FF\ QType\ Pro\ Cond\ Bold.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffCondMedium;
+  src: url(./FF\ QType\ Pro\ Cond\ Medium.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffCompExtraLight;
+  src: url(./FF\ QType\ Pro\ Comp\ Extra\ Light.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffCompBold;
+  src: url(./FF\ QType\ Pro\ Comp\ Bold.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffCompMedium;
+  src: url(./FF\ QType\ Pro\ Comp\ Medium.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffSemiExtBold;
+  src: url(./FF\ QType\ Pro\ Semi\ Ext\ Bold.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffSemiExtBook;
+  src: url(./FF\ QType\ Pro\ Semi\ Ext\ Book.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffSemiExtLight;
+  src: url(./FF\ QType\ Pro\ Semi\ Ext\ Light.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffProBlack;
+  src: url(./FF\ QType\ Square\ Pro\ Black.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffProBold;
+  src: url(./FF\ QType\ Square\ Pro\ Bold.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffProBook;
+  src: url(./FF\ QType\ Square\ Pro\ Book.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffProExtraLight;
+  src: url(./FF\ QType\ Square\ Pro\ Extra\ Light.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffProMedium;
+  src: url(./FF\ QType\ Square\ Pro\ Medium.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: ffProLight;
+  src: url(./FF\ QType\ Square\ Pro\ Light.otf) format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
