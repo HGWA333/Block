@@ -44,8 +44,13 @@ eth.sendTransaction({from:"0xf6cfa43cff2208d299362106b110cf749bfdea68", to:"0xa1
 
 eth.sendTransaction({from:eth.accounts[1], to:eth.accounts[2], value:web3.toWei(25,"ether")})
 
-curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "personal_unlockAccount", "params": ["0x3a57dfcf9dce0dd143289fd53ef5a9ebc1849404" ,"password"]}' http://localhost:8080
-
 eth.getTranaction("0xf21d2c7b175a133ec6c59fa649cc2861bf719ec83a4666753e59667e16d23f15")
 
 eth.getBalance("0xf21d2c7b175a133ec6c59fa649cc2861bf719ec83a4666753e59667e16d23f15")
+["0xb10424ed82893beff5584b26c479e9edc17d5981",
+
+curl -X POST -H "content-type:application/json" --data '{"id":50, "jsonrpc": "2.0", "method": "personal_unlockAccount", "params": ["0xb10424ed82893beff5584b26c479e9edc17d5981" ,"password"]}' http://localhost:8088
+
+eth.sendTransaction({from:"0xb10424ed82893beff5584b26c479e9edc17d5981", to:"0x3a57dfcf9dce0dd143289fd53ef5a9ebc1849404", value:1})
+
+eth.getBalance("0x3a57dfcf9dce0dd143289fd53ef5a9ebc1849404")

@@ -6,28 +6,14 @@ const request = axios.create({
   },
 });
 
-export const lastBlock = async (lastBlockData) => {
-  return (await request.post("/lastblock", lastBlockData)).lastBlockData;
+export const blockAdd = async (blockAddData) => {
+  const result = await request.post("/", blockAdd);
+  return result.data.blockAddData;
 };
 
-export const lastTransaction = async (lastTransactionData) => {
-  return (await request.post("/lastTransaction", lastTransactionData))
-    .lastTransactionData;
-};
+export const lastTransactionList = async (lastTRData) => {
+  console.log("리액트 실행할거");
+  const result = await request.post("api/lt/trList", lastTRData);
 
-export const Search = async (searchData) => {
-  return (await request.post("/search", searchData)).searchData;
-};
-
-export const SearchAddress = async (SearchAddressData) => {
-  return (await request.post("/search/address", SearchAddressData))
-    .SearchAddressData;
-};
-
-export const SearchToken = async (SearchTokenData) => {
-  return (await request.post("/search/token", SearchTokenData)).SearchTokenData;
-};
-
-export const SearchNametag = async (SearchNametag) => {
-  return (await request.post("/search/nametag", SearchNametag)).SearchNametag;
+  return result.data.lastTRData;
 };

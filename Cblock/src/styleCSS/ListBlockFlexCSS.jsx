@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const ListBlockFlexCSS = styled.div`
   border-bottom: 7px solid black;
-  margin-top: 8px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   display: flex;
   justify-content: space-evenly;
   align-items: stretch;

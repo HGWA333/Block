@@ -1,6 +1,10 @@
 import MainContaniner from "./components/MainPage/Container";
-import { useState, useEffect } from "react";
+import { blockAdd } from "./api/index";
+
 function App() {
+  blockAdd({}).then((blockAddData) => {
+    console.log(blockAddData);
+  });
   {
     // const [blockNumber, setBlockNumber] = useState(-1);
     // const [pageNumber, setPageNumber] = useState(0);

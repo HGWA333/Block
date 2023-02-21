@@ -30,7 +30,7 @@ module.exports = class LastBlock extends Sequelize.Model {
         },
         blockNumber: {
           type: Sequelize.INTEGER.UNSIGNED,
-          allowNull: true,
+          unique: true,
         },
         parenthash: {
           type: Sequelize.STRING(255),
@@ -63,10 +63,10 @@ module.exports = class LastBlock extends Sequelize.Model {
       }
     );
   }
-  // static associate(db) {
-  //   db.LastBlock.hasMany(db.LastTransaction, {
-  //     foreignKey: "blockHash",
-  //     sourceKey: "hash", // 고유값이 있어야 됨
-  //   });
-  // }
+  static associate(db) {
+    db.LastBlock.hasMany(db.LastTransaction, {
+      foreignKey: "blnum",
+      sourceKey: "blockNumber", // 고유값이 있어야 됨
+    });
+  }
 };

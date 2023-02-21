@@ -4,6 +4,7 @@ import BlockInfoContainer from "../BlockInfo/Container";
 import BlockListContainer from "../BlockList/Container";
 import LastBlContainer from "../LastBL/Container";
 import LastTRContainer from "../LastTR/Container";
+import FooterContainer from "../Footer/Container";
 import { MainPageCSS } from "../../styleCSS/MainPageCSS";
 import { ListBlockFlexCSS } from "../../styleCSS/ListBlockFlexCSS";
 
@@ -19,6 +20,7 @@ const MainComponents = () => {
           <LastTRContainer></LastTRContainer>
           <BlockListContainer></BlockListContainer>
         </ListBlockFlexCSS>
+        <FooterContainer></FooterContainer>
       </MainPageCSS>
     </>
   );

@@ -4,11 +4,13 @@ export const LatestBlockCSS = styled.div`
   display: flex;
   flex-direction: column;
   div {
-    font-family: ffProLight;
-    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    font-family: ffProMedium;
+    font-size: 19px;
     span {
       font-family: ffProExtraLight;
-      font-size: 11px;
+      font-size: 15px;
     }
   }
 

@@ -2,7 +2,7 @@ import EtherInfoComponents from "../EtherInfo/Components";
 const EtherInfoContainer = () => {
   return (
     <>
-      <EtherInfoComponents>EtherInfoComponents</EtherInfoComponents>
+      <EtherInfoComponents></EtherInfoComponents>
     </>
   );
 };

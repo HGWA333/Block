@@ -8,12 +8,8 @@ module.exports = class LastTransaction extends Sequelize.Model {
           type: Sequelize.STRING(255),
           allowNull: true,
         },
-        block: {
-          type: Sequelize.INTEGER.UNSIGNED,
-          allowNull: true,
-        },
-        timestamp: {
-          type: Sequelize.INTEGER.UNSIGNED,
+        blockHeight: {
+          type: Sequelize.STRING(255),
           allowNull: true,
         },
         from: {
@@ -28,12 +24,24 @@ module.exports = class LastTransaction extends Sequelize.Model {
           type: Sequelize.INTEGER.UNSIGNED,
           allowNull: true,
         },
-        transactionFee: {
+        nonce: {
           type: Sequelize.INTEGER.UNSIGNED,
           allowNull: true,
         },
-        gasPrice: {
+        transactionIndex: {
           type: Sequelize.INTEGER.UNSIGNED,
+          allowNull: true,
+        },
+        r: {
+          type: Sequelize.Sequelize.STRING(255),
+          allowNull: true,
+        },
+        s: {
+          type: Sequelize.Sequelize.STRING(255),
+          allowNull: true,
+        },
+        v: {
+          type: Sequelize.Sequelize.STRING(255),
           allowNull: true,
         },
       },
@@ -47,10 +55,10 @@ module.exports = class LastTransaction extends Sequelize.Model {
       }
     );
   }
-  // static associate(db) {
-  //   db.LastTransaction.belongsTo(db.LastBlock, {
-  //     foreignKey: "blockHash",
-  //     targetKey: "hash", // 고유값이 있어야 됨
-  //   });
-  // }
+  static associate(db) {
+    db.LastTransaction.belongsTo(db.LastBlock, {
+      foreignKey: "blnum",
+      targetKey: "blockNumber", // 고유값이 있어야 됨
+    });
+  }
 };

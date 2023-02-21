@@ -1,8 +1,21 @@
 const router = require("express").Router();
-const { LastTransaction } = require("../models/transaction");
+const db = require("../models/index");
 
-router.post("/hash", async (req, res) => {
-  const LastTransaction = await LastTransaction.findOne({ transactionHash });
+router.post("/trList", async (req, res) => {
+  console.log("trList실행예정", req);
+  const LastTransactionList = await db.LastTransaction.findAll({
+    include: [
+      {
+        model: db.LastBlock,
+      },
+    ],
+  });
+  console.log("LastTransaction::::", LastTransactionList);
+  console.log("trList실행했다.");
+  res.send({
+    msg: "LastTransactionList 보냄",
+    lastTRData: LastTransactionList,
+  });
 });
 
 module.exports = router;

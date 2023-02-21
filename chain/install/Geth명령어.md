@@ -27,7 +27,7 @@ geth --datadir ~/myGeth --http --http.addr "0.0.0.0" --http.port 8080 --http.cor
   eth.mining : 현재 채굴중인지 여부
   eth.getBalance(account) : 계좌 잔고 조회
   eth.getTranaction(tx) : 트랜잭션의 정보
-  eth.sendTransaction({from:"account", to:"account", value:50}) : 트랜잭션 보내기
+  eth.sendTransaction({from:"0xb10424ed82893beff5584b26c479e9edc17d5981", to:"0x3a57dfcf9dce0dd143289fd53ef5a9ebc1849404", value:50}) : 트랜잭션 보내기
   eth.sendTransaction({from:eth.accounts[0], to:eth.accounts[1], value:web3.toWei(1,"ether")})
   eth.pendingTransactions : 현재 진행을 기다리고 있는 트랜잭션
 
