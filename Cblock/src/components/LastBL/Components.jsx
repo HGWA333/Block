@@ -1,39 +1,30 @@
-import { LastBLCSS } from "../../styleCSS/LastBLCSS";
+import { LastBLCSS } from "../../styleCSS/LsatBlockCSS";
 
-const LastBLComponents = () => {
+const LastBLComponents = ({ lastBL }) => {
   return (
     <>
       <LastBLCSS>
-        <p>Latest Blocks</p>
-        <div>17775 15 secs ago</div>
-        <div>
-          Fee Recipient <span>MEV Builder: 0x5F...44F 126 txns in 12 secs</span>
-        </div>
-        <div>0.03498 Eth</div>
-        <p>Latest Blocks</p>
-        <div>17775 15 secs ago</div>
-        <div>
-          Fee Recipient <span>MEV Builder: 0x5F...44F 126 txns in 12 secs</span>
-        </div>
-        <div>0.03498 Eth</div>
-        <p>Latest Blocks</p>
-        <div>17775 15 secs ago</div>
-        <div>
-          Fee Recipient <span>MEV Builder: 0x5F...44F 126 txns in 12 secs</span>
-        </div>
-        <div>0.03498 Eth</div>
-        <p>Latest Blocks</p>
-        <div>17775 15 secs ago</div>
-        <div>
-          Fee Recipient <span>MEV Builder: 0x5F...44F 126 txns in 12 secs</span>
-        </div>
-        <div>0.03498 Eth</div>
-        <p>Latest Blocks</p>
-        <div>17775 15 secs ago</div>
-        <div>
-          Fee Recipient <span>MEV Builder: 0x5F...44F 126 txns in 12 secs</span>
-        </div>
-        <div>0.03498 Eth</div>
+        {lastBL.map(({ id, difficulty, hash }) => (
+          <div key={id} className="alignContent">
+            <p>Latest Blocks</p>
+            <div className="wordBreak">
+              Block Height:
+              <span> {difficulty}</span>
+            </div>
+            <div className="wordBreak">
+              Fee Recipient:
+              <span> {hash}</span>
+            </div>
+            <div className="wordBreak">
+              Block Reward:
+              <span> {difficulty}</span>
+            </div>
+            <div className="wordBreak">
+              Transactions Block:
+              <span> {difficulty}</span>
+            </div>
+          </div>
+        ))}
       </LastBLCSS>
     </>
   );

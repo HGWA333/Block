@@ -84,7 +84,7 @@ app.post("/", async (req, res) => {
             transactionsroot: LastBlockInfo.transactionsroot,
             transactions: LastBlockInfo.transactions,
           });
-          // console.log("LastBlockInfo:", LastBlockInfo);
+          console.log("LastBlockInfo:", LastBlockInfo);
           // console.log("i", i);
           // console.log("transactions::::::", LastBlockInfo.transactions);
         }
@@ -105,7 +105,7 @@ app.post("/", async (req, res) => {
                       i,
                       j,
                       async (err, tx) => {
-                        // console.log("tx:::::::::::::::::::::::::::", tx);
+                        console.log("tx:::::::::::::::::::::::::::", tx);
                         const tempBlock = await db.LastBlock.findOne({
                           where: { blockNumber: tx.blockNumber },
                         });

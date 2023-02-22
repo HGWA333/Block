@@ -11,9 +11,12 @@ export const blockAdd = async (blockAddData) => {
   return result.data.blockAddData;
 };
 
-export const lastTransactionList = async (lastTRData) => {
-  console.log("리액트 실행할거");
-  const result = await request.post("api/lt/trList", lastTRData);
+export const lastBlockList = async (lastBLData) => {
+  const result = await request.post("api/lb/blList", lastBLData);
+  return result.data.lastBLData;
+};
 
+export const lastTransactionList = async (lastTRData) => {
+  const result = await request.post("api/lt/trList", lastTRData);
   return result.data.lastTRData;
 };

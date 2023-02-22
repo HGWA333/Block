@@ -6,7 +6,12 @@ import LastBlContainer from "../LastBL/Container";
 import LastTRContainer from "../LastTR/Container";
 import FooterContainer from "../Footer/Container";
 import { MainPageCSS } from "../../styleCSS/MainPageCSS";
-import { ListBlockFlexCSS } from "../../styleCSS/ListBlockFlexCSS";
+import {
+  ListBlockFlexCSS,
+  ListBlockFlexCSS2,
+  ListBlockFlexCSS3,
+  ListBlockFlexCSS4,
+} from "../../styleCSS/ListBlockFlexCSS";
 
 const MainComponents = () => {
   return (
@@ -15,11 +20,11 @@ const MainComponents = () => {
         <EtherInfoContainer></EtherInfoContainer>
         <SearchContainer></SearchContainer>
         <BlockInfoContainer></BlockInfoContainer>
-        <ListBlockFlexCSS>
+        <ListBlockFlexCSS3>
           <LastBlContainer></LastBlContainer>
           <LastTRContainer></LastTRContainer>
-          <BlockListContainer></BlockListContainer>
-        </ListBlockFlexCSS>
+        </ListBlockFlexCSS3>
+        <BlockListContainer></BlockListContainer>
         <FooterContainer></FooterContainer>
       </MainPageCSS>
     </>

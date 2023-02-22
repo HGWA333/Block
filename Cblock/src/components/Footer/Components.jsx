@@ -1,13 +1,10 @@
 import { FooterCSS } from "../../styleCSS/FooterCSS";
-
 const FooterComponents = () => {
   return (
     <>
       <FooterCSS>
         <div className="footerBox1">
           <div>
-            <div>Icon1</div>
-            <div>Icon1</div>
             <div>Icon1</div>
             <div>Icon1</div>
           </div>

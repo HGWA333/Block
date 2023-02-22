@@ -64,11 +64,10 @@ export const FooterCSS = styled.div`
     }
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1600px) {
   }
 
-  @media screen and (max-width: 1010px) {
-    border: 1px solid red;
+  @media screen and (max-width: 1480px) {
     flex-direction: column;
     .footerBox1 {
       margin-top: 50px;

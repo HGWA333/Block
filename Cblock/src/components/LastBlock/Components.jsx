@@ -2,6 +2,7 @@ import {
   LatestBlockCSS,
   LatestTransactionCSS,
 } from "../../styleCSS/LsatBlockCSS";
+import { ListBlockFlexCSS2 } from "../../styleCSS/ListBlockFlexCSS";
 
 const BlockListComponents = ({ lastTR, lastBL }) => {
   return (

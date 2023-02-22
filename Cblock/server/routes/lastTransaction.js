@@ -7,8 +7,11 @@ router.post("/trList", async (req, res) => {
     include: [
       {
         model: db.LastBlock,
+        order: [["id", "ASC"]],
       },
     ],
+    offset: 5,
+    limit: 5,
   });
   console.log("LastTransaction::::", LastTransactionList);
   console.log("trList실행했다.");

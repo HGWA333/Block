@@ -1,4 +1,4 @@
-import { BlockInfoCSS } from "../../styleCSS/BlockInfoCSS";
+import { BlockInfoCSS } from "../../styleCSS/HeaderCSS";
 
 const BlockInfoComponents = () => {
   return (

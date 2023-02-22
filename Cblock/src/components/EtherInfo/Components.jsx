@@ -1,4 +1,4 @@
-import { EtherInfoCSS } from "../../styleCSS/EtherInfoCSS";
+import { EtherInfoCSS } from "../../styleCSS/HeaderCSS";
 
 const EtherInfoComponents = () => {
   return (

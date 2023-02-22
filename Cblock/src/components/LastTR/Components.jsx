@@ -1,4 +1,4 @@
-import { LastTRCSS } from "../../styleCSS/LastTRCSS";
+import { LastTRCSS } from "../../styleCSS/LsatBlockCSS";
 const LastTRComponents = ({ lastTR }) => {
   console.log("lastTR를 찍었다.", lastTR);
 
@@ -8,72 +8,24 @@ const LastTRComponents = ({ lastTR }) => {
   return (
     <>
       <LastTRCSS>
-        <p>Latest Transactions</p>
-        <div>
-          0xb86f960e569831
-          <span>15 secs ago</span>
-        </div>
-        <div>
-          <div>
-            From <span>0x5F9273...0F16844F</span>
+        {lastTR.map(({ id, transactionHash, from, to, blnum }) => (
+          <div key={id}>
+            <p>Latest Transactions</p>
+            <div className="wordBreak">
+              Hash:
+              <span> {transactionHash}</span>
+            </div>
+            <div className="wordBreak">
+              From: <span>{from}</span>
+            </div>
+            <div className="wordBreak">
+              To: <span>{to}</span>
+            </div>
+            <div className="wordBreak">
+              BlockNumber: <span>{blnum}</span>
+            </div>
           </div>
-          <div>
-            To <span>0x35101c...5c341935</span>
-          </div>
-        </div>
-        <div>0.04534 Eth</div>
-        <p>Latest Transactions</p>
-        <div>
-          0xb86f960e569831 <span>15 secs ago</span>
-        </div>
-        <div>
-          <div>
-            From <span>0x5F9273...0F16844F</span>
-          </div>
-          <div>
-            To <span>0x35101c...5c341935</span>
-          </div>
-        </div>
-        <div>0.04534 Eth</div>
-        <p>Latest Transactions</p>
-        <div>
-          0xb86f960e569831 <span>15 secs ago</span>
-        </div>
-        <div>
-          <div>
-            From <span>0x5F9273...0F16844F</span>
-          </div>
-          <div>
-            To <span>0x35101c...5c341935</span>
-          </div>
-        </div>
-        <div>0.04534 Eth</div>
-        <p>Latest Transactions</p>
-        <div>
-          0xb86f960e569831 <span>15 secs ago</span>
-        </div>
-        <div>
-          <div>
-            From <span>0x5F9273...0F16844F</span>
-          </div>
-          <div>
-            To <span>0x35101c...5c341935</span>
-          </div>
-        </div>
-        <div>0.04534 Eth</div>
-        <p>Latest Transactions</p>
-        <div>
-          0xb86f960e569831 <span>15 secs ago</span>
-        </div>
-        <div>
-          <div>
-            From <span>0x5F9273...0F16844F</span>
-          </div>
-          <div>
-            To <span>0x35101c...5c341935</span>
-          </div>
-        </div>
-        <div>0.04534 Eth</div>
+        ))}
       </LastTRCSS>
     </>
   );

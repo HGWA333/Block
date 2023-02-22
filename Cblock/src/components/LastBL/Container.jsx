@@ -1,21 +1,21 @@
 import LastBLComponents from "../LastBL/Components";
+import { lastBlockList } from "../../api/index";
 import { useState, useEffect } from "react";
 
 const LastBLContainer = () => {
-  // const [lastBL, setLastBL] = useState(-1);
-  // const [BLpageNum, setBLpageNum] = useState(0);
+  const [lastBL, setLastBL] = useState([]);
+
   useEffect(() => {
-    console.log(" LastBL useEffect");
-    for (let i = 0; i < 55; ++i) {
-      if (5 * 7 <= i && i < 5 * (7 + 1)) {
-        console.log(i);
-      }
-    }
+    // console.log("LastBLContainer 찍힘");
+    lastBlockList({}).then((lastBLData) => {
+      console.log("lastBLData", lastBLData);
+      setLastBL(lastBLData);
+    });
   }, []);
 
   return (
     <>
-      <LastBLComponents></LastBLComponents>
+      <LastBLComponents lastBL={lastBL}></LastBLComponents>
     </>
   );
 };

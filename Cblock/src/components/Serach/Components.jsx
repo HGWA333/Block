@@ -1,4 +1,4 @@
-import { SerachCSS } from "../../styleCSS/SerachCSS";
+import { SerachCSS } from "../../styleCSS/HeaderCSS";
 const SearchComponents = () => {
   return (
     <>
