@@ -21,6 +21,8 @@ export const LastBLCSS = styled.div`
   div {
     font-family: ffProLight;
     font-size: 16px;
+    margin-top: 3px;
+    padding-bottom: 5px;
     margin-bottom: 2.5px;
     span {
       font-family: ffProExtraLight;
@@ -72,6 +74,8 @@ export const LastTRCSS = styled.div`
     font-family: ffProLight;
     font-size: 16px;
     margin-bottom: 2.5px;
+    margin-top: 3px;
+    padding-bottom: 5px;
     span {
       font-family: ffProExtraLight;
       font-size: 18px;
@@ -109,6 +113,8 @@ export const LatestBlockCSS = styled.div`
     margin-bottom: 3.3px;
   }
   div {
+    margin-top: 3px;
+    padding-bottom: 5px;
     font-family: ffProLight;
     font-size: 16px;
     margin-bottom: 2.5px;
@@ -142,6 +148,8 @@ export const LatestTransactionCSS = styled.div`
     margin-bottom: 3.3px;
   }
   div {
+    margin-top: 3px;
+    padding-bottom: 5px;
     font-family: ffProLight;
     font-size: 16px;
     margin-bottom: 2.5px;

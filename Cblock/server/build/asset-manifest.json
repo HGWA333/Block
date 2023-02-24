@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.979e31d2.css",
-    "main.js": "/static/js/main.62debcca.js",
+    "main.js": "/static/js/main.719ede2a.js",
     "static/js/787.05e4972f.chunk.js": "/static/js/787.05e4972f.chunk.js",
     "static/media/FF QType Pro Comp Medium.otf": "/static/media/FF QType Pro Comp Medium.0fc7afd15c264373b470.otf",
     "static/media/FF QType Pro Comp Bold.otf": "/static/media/FF QType Pro Comp Bold.64c8d5dc81c270e2cc0d.otf",
@@ -20,11 +20,11 @@
     "static/media/FF QType Square Pro Black.otf": "/static/media/FF QType Square Pro Black.0dc84f8728abc1966bb0.otf",
     "index.html": "/index.html",
     "main.979e31d2.css.map": "/static/css/main.979e31d2.css.map",
-    "main.62debcca.js.map": "/static/js/main.62debcca.js.map",
+    "main.719ede2a.js.map": "/static/js/main.719ede2a.js.map",
     "787.05e4972f.chunk.js.map": "/static/js/787.05e4972f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.979e31d2.css",
-    "static/js/main.62debcca.js"
+    "static/js/main.719ede2a.js"
   ]
 }
