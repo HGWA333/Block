@@ -23,7 +23,7 @@ const LastTRComponents = ({
               setClickTR(item);
             }}
           >
-            <span className="SpanText001">Latest Blocks</span>
+            <span className="SpanText001">Latest Transactions</span>
             <div className="wordBreak">
               Transaction:
               <span> {item.transactionHash}</span>
