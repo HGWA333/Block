@@ -1,10 +1,17 @@
+// import "./App.css";
 import MainContaniner from "./components/MainPage/Container";
 import { blockAdd } from "./api/index";
+import { useEffect, useState } from "react";
 
 function App() {
-  blockAdd({}).then((blockAddData) => {
-    console.log(blockAddData);
-  });
+  const [blockGetAdd, setBlockGetAdd] = useState();
+
+  useEffect(() => {
+    blockAdd().then((blockAddData) => {
+      setBlockGetAdd(blockAddData);
+    });
+  }, [blockGetAdd]);
+
   {
     // const [blockNumber, setBlockNumber] = useState(-1);
     // const [pageNumber, setPageNumber] = useState(0);

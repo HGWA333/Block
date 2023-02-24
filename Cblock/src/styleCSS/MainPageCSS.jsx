@@ -2,8 +2,12 @@ import styled from "styled-components";
 import "../fontCSS/Font.css";
 
 export const MainPageCSS = styled.div`
-  height: 100vh;
   width: 100vw;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  flex-direction: column;
+  overflow-x: hidden;
   * {
     font-family: ffProBlack;
     box-sizing: border-box;

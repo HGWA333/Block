@@ -10,7 +10,7 @@ const BlockInfoComponents = () => {
         <div>
           TRANSACTIONS: <span> 1000 </span>
         </div>
-        <div>
+        <div className="test">
           LAST FINALIZED BLOCK: <span> 1000 </span>
         </div>
       </BlockInfoCSS>

@@ -2,6 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: stretch;
+  flex-grow: 1;
+  align-self: center;
+  justify-self: center;
+  align-self: center;
+  justify-self: flex-start;
+  cursor: pointer;
 }
 .test :nth-child() {
   flex-grow: 5;
@@ -9,6 +18,9 @@
   margin-bottom: 50px;
   border: 1px solid red;
   width: 10px;
+  align-self: flex-end;
+  justify-self: flex-end;
+  cursor: pointer;
 }
 
 .fontFace {

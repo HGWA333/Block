@@ -3,16 +3,7 @@ const FooterComponents = () => {
   return (
     <>
       <FooterCSS>
-        <div className="footerBox1">
-          <div>
-            <div>Icon1</div>
-            <div>Icon1</div>
-          </div>
-          <div>
-            <div>Icon1</div>
-            <div>Back to Top</div>
-          </div>
-        </div>
+        <div className="footerBox1"></div>
         <div className="footerBox2">
           <div className="footerItem001">
             <div>Powered by Ethereum</div>

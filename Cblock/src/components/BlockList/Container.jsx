@@ -2,24 +2,19 @@ import BlockListComponents from "../BlockList/Components";
 import { lastTransactionList, lastBlockList } from "../../api/index";
 import { useState, useEffect } from "react";
 
-const BlockListContainer = () => {
-  const [lastTR, setLastTR] = useState([]);
-  const [lastBL, setLastBL] = useState([]);
-
-  useEffect(() => {
-    lastTransactionList({}).then((lastTRData) => {
-      setLastTR(lastTRData);
-    });
-    lastBlockList({}).then((lastBLData) => {
-      setLastBL(lastBLData);
-    });
-  }, []);
-
+const BlockListContainer = ({
+  setClickBlock,
+  clickBlock,
+  clickTR,
+  setClickTR,
+}) => {
   return (
     <>
       <BlockListComponents
-        lastTR={lastTR}
-        lastBL={lastBL}
+        clickBlock={clickBlock}
+        setClickBlock={setClickBlock}
+        setClickTR={setClickTR}
+        clickTR={clickTR}
       ></BlockListComponents>
     </>
   );

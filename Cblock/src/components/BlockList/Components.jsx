@@ -2,55 +2,51 @@ import {
   LatestBlockCSS,
   LatestTransactionCSS,
 } from "../../styleCSS/LsatBlockCSS";
+import { ListBlockFlexCSS2 } from "../../styleCSS/ListBlockFlexCSS";
 
-const BlockListComponents = ({ lastTR, lastBL }) => {
+const BlockListComponents = ({
+  setClickBlock,
+  clickBlock,
+  setClickTR,
+  clickTR,
+}) => {
   return (
     <>
-      <LatestBlockCSS>
-        <p>Latest Blocks Info</p>
-        {lastBL.map(({ id, difficulty, hash }) => (
-          <div key={id} className="alignContent">
-            <p>Latest Blocks</p>
-            <div className="wordBreak">
-              Block Height:
-              <span> {difficulty}</span>
-            </div>
-            <div className="wordBreak">
-              Fee Recipient:
-              <span> {hash}</span>
-            </div>
-            <div className="wordBreak">
-              Block Reward:
-              <span> {difficulty}</span>
-            </div>
-            <div className="wordBreak">
-              Transactions Block:
-              <span> {difficulty}</span>
-            </div>
+      <ListBlockFlexCSS2>
+        <LatestBlockCSS>
+          <p>Latest Blocks Info</p>
+          <div>
+            Block Height: <span>{clickBlock?.blockNumber}</span>
           </div>
-        ))}
-      </LatestBlockCSS>
-      <LatestTransactionCSS>
-        <p>Latest TransactionInfo</p>
-        {lastTR.map(({ id, transactionHash, from, to, blnum }) => (
-          <div key={id}>
-            <p>Latest Transactions</p>
-            <div className="wordBreak">
-              Hash:
-              <span> {transactionHash}</span>
-            </div>
-            <div className="wordBreak">
-              From: <span>{from}</span>
-            </div>
-            <div className="wordBreak">
-              To: <span>{to}</span>
-            </div>
-            <div className="wordBreak">
-              BlockNumber: <span>{blnum}</span>
-            </div>
+          <div>
+            Transactions: <span>{clickBlock?.hash}</span>
           </div>
-        ))}
-      </LatestTransactionCSS>
+          <div>
+            Extra Data: <span>{clickBlock?.extraData}</span>
+          </div>
+          <div>
+            Gas Price: <span>{clickBlock?.gasLimit}</span>
+          </div>
+          <div>
+            Size: <span>{clickBlock?.size}</span>
+          </div>
+        </LatestBlockCSS>
+        <LatestTransactionCSS>
+          <p>Latest TransactionInfo</p>
+          <div>
+            Transaction Hash: <span>{clickTR?.transactionHash}</span>
+          </div>
+          <div>
+            From: <span>{clickTR?.from}</span>
+          </div>
+          <div>
+            To: <span>{clickTR?.to}</span>
+          </div>
+          <div>
+            BlockNumber: <span>{clickTR?.blnum}</span>
+          </div>
+        </LatestTransactionCSS>
+      </ListBlockFlexCSS2>
     </>
   );
 };

@@ -29,7 +29,7 @@ module.exports = class LastBlock extends Sequelize.Model {
           allowNull: true,
         },
         blockNumber: {
-          type: Sequelize.INTEGER.UNSIGNED,
+          type: Sequelize.STRING(255),
           unique: true,
         },
         parenthash: {

@@ -5,19 +5,12 @@ export const ListBlockFlexCSS = styled.div`
   border-bottom: 7px solid black;
   padding-top: 30px;
   padding-bottom: 30px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
 
   @media screen and (min-width: 1280px) {
   }
 
   @media screen and (max-width: 1480px) {
     padding-left: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
   }
 
   @media screen and (max-width: 360px) {
@@ -30,10 +23,11 @@ export const ListBlockFlexCSS = styled.div`
 `;
 export const ListBlockFlexCSS2 = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: stretch;
   flex-direction: column;
-  padding-left: 15px;
-  margin-bottom: 15px;
-
+  padding-top: 7.5px;
+  padding-bottom: 15px;
   @media screen and (min-width: 1280px) {
   }
 
@@ -47,11 +41,10 @@ export const ListBlockFlexCSS2 = styled.div`
   }
 `;
 export const ListBlockFlexCSS3 = styled.div`
-  padding-left: 63px;
-
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: stretch;
+  padding-bottom: 15px;
   border-bottom: 5px solid black;
 
   @media screen and (min-width: 1280px) {
@@ -67,13 +60,9 @@ export const ListBlockFlexCSS3 = styled.div`
   }
 `;
 export const ListBlockFlexCSS4 = styled.div`
-  margin: auto;
   padding-top: 25px;
   padding-left: 63px;
   padding-bottom: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   @media screen and (min-width: 1280px) {
   }

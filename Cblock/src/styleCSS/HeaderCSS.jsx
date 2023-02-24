@@ -6,6 +6,8 @@ export const EtherInfoCSS = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
+  padding-left: 20px;
+  cursor: pointer;
 
   .etherInfo1 {
     font-family: ffProBlack;
@@ -26,10 +28,15 @@ export const EtherInfoCSS = styled.div`
 `;
 export const BlockInfoCSS = styled.div`
 border-bottom: 3.5px solid black;
-
-
-  flex-wrap: nowrap;
+display: flex;
+justify-content: flex-start;
+padding-left:270px;
+align-items: center;
+.test{
+margin-left:420px;
+}
     & div {
+      margin:10px;
       font-family: ffProExtraLight;
       font-size: 15px;
       & span {
@@ -52,12 +59,29 @@ border-bottom: 3.5px solid black;
   }
 `;
 export const SerachCSS = styled.div`
-  form {
-    input {
-      font-family: ffProLight;
-    }
-    button {
-    }
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 5px;
+  border-bottom : 1px solid black;
+
+  .Text001 {
+    font-family: ffProLight;
+    font-size: 16px;
+  }
+  .Text002 {
+    justify-self: flex-end;
+    align-self: flex-end;
+    font-family: ffProBold
+    font-size: 16px;
+  }
+    .Text003 {
+    font-family: ffCompExtraLight;
+    font-size: 16px;
+
+  } .Text004 {
+    font-family: ffProLight;
+    font-size: 16px;
   }
 
   @media screen and (min-width: 1280px) {

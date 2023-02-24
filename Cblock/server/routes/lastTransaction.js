@@ -2,7 +2,6 @@ const router = require("express").Router();
 const db = require("../models/index");
 
 router.post("/trList", async (req, res) => {
-  console.log("trList실행예정", req);
   const LastTransactionList = await db.LastTransaction.findAll({
     include: [
       {
@@ -10,11 +9,18 @@ router.post("/trList", async (req, res) => {
         order: [["id", "ASC"]],
       },
     ],
-    offset: 5,
-    limit: 5,
+    offset: req.body.offset,
+    limit: req.body.limit,
   });
-  console.log("LastTransaction::::", LastTransactionList);
-  console.log("trList실행했다.");
+
+  res.send({
+    msg: "LastTransactionList 보냄",
+    lastTRData: LastTransactionList,
+  });
+});
+
+router.post("/maxtr", async (req, res) => {
+  const LastTransactionList = await db.LastTransaction.findAll({});
   res.send({
     msg: "LastTransactionList 보냄",
     lastTRData: LastTransactionList,
