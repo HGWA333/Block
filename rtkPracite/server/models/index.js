@@ -5,7 +5,8 @@ const process = require("process");
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 
-const db = {};
+const Rtk = require("./rtk");
+const db = { Rtk };
 
 let sequelize = new Sequelize(
   config.database,
@@ -14,7 +15,9 @@ let sequelize = new Sequelize(
   config
 );
 
-Object.keys(db).forEach(modelName => {
+Rtk.init(sequelize);
+
+Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }

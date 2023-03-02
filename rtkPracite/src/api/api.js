@@ -8,13 +8,13 @@ export const api = createApi({
     getCount: builder.query({
       query: ({ name }) => `count/${name}`,
       providesTags: (result, error, arg) => {
-        console.log(result, error, arg);
+        console.log("result, error, arg", result, error, arg);
         return [{ type: "Count", id: arg.name }];
       },
     }),
     setCount: builder.mutation({
       query: ({ name, value, test }) => {
-        console.log("name value", name, value, test);
+        console.log("name, value, test", name, value, test);
         return {
           url: `count/${name}`,
           method: "POST",

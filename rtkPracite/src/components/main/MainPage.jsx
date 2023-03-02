@@ -3,6 +3,7 @@ import { api } from "../../api/api";
 console.log(api);
 
 const Count = ({ name }) => {
+  // console.log("FindRtk", FindRtk);
   const query = api.useGetCountQuery({ name });
   const mutation = api.useSetCountMutation();
   const setCount = mutation[0];
@@ -10,14 +11,14 @@ const Count = ({ name }) => {
   if (query.isLoading) {
     return <>Loading</>;
   }
-  console.log("query", query);
-  console.log("query.data", query.data);
-  console.log("query.isFetching", query.isFetching);
-  console.log("mutation[0])", mutation[0]);
-  console.log("mutation[1].isLoading", mutation[1].isLoading);
-  console.log("setCount", setCount);
-  console.log("setCount.name", setCount.name);
-  console.log("setCount.value", setCount.value);
+  // console.log("query", query);
+  // console.log("query.data", query.data);
+  // console.log("query.isFetching", query.isFetching);
+  // console.log("mutation[0])", mutation[0]);
+  // console.log("mutation[1].isLoading", mutation[1].isLoading);
+  // console.log("setCount", setCount);
+  // console.log("setCount.name", setCount.name);
+  // console.log("setCount.value", setCount.value);
 
   return (
     <div>
@@ -34,6 +35,7 @@ const Count = ({ name }) => {
         {query.isFetching ? "fetching..." : ""}
         {name} {query.data}
       </button>
+      <h1>{query.data}</h1>
     </div>
   );
 };
@@ -41,7 +43,7 @@ const Count = ({ name }) => {
 function MainPage() {
   return (
     <>
-      <Count name="egoing" />
+      <Count name="egoing"></Count>
       <Count name="egoing" />
       <Count name="jane" />
       <Count name="steve" />
