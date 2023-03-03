@@ -4,11 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApiProvider } from "@reduxjs/toolkit/query/react";
-import { api } from "./api/api";
+import { TestApi } from "./api/api";
+import "./fontCSS/Font.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  <ApiProvider api={api}>
+  <ApiProvider api={TestApi}>
     <App />
   </ApiProvider>
   // </React.StrictMode>

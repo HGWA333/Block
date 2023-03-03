@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const api = createApi({
+export const TestApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8080/api" }),
   keepUnusedDataFor: 5,
-  tagTypes: ["Count"],
+  tagTypes: ["Test"],
   endpoints: (builder) => ({
     getCount: builder.query({
       query: ({ name }) => `count/${name}`,
       providesTags: (result, error, arg) => {
         console.log("result, error, arg", result, error, arg);
-        return [{ type: "Count", id: arg.name }];
+        return [{ type: "Test", id: arg.name }];
       },
     }),
     setCount: builder.mutation({
@@ -23,7 +23,7 @@ export const api = createApi({
       },
       invalidatesTags: (result, error, arg) => [
         // invalidatesTags 데이터가 수정시 자동으로 바꿔줌
-        { type: "Count", id: arg.name },
+        { type: "Test", id: arg.name },
       ],
     }),
   }),

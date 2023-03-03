@@ -13,9 +13,11 @@ const Counter = ({ web3, account }) => {
         "0x0657B9520DE293B1261994f719c5BF16810F211e"
       );
       setDeployed(_deployed);
+      console.log("매개변수 _deployed", _deployed);
 
       const _count = await _deployed.methods.current().call();
       setCount(parseInt(_count));
+      console.log("매개변수 _count", _count);
     })();
   }, []);
 
