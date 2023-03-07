@@ -29,7 +29,12 @@
     "three": "^0.150.1",
     "truffle": "^5.7.9",
     "web-vitals": "^2.1.0",
-    "web3": "^1.8.2"
+    "web3": "^1.8.2",
+    "gsap": "3.11.3",
+    "leva": "0.9.32",
+    "valtio": "1.7.4",
+    "framer-motion": "^8.5.0",
+    "lerp": "^1.0.3"
   },
   "scripts": {
     "start": "npm-run-all --parallel start:**",

@@ -1,40 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-// 0xF1976836a4aB3BF78AF752BA724b5d3E40c150B1   [CA주소]
+// 0x70ab20B3081Ebd97c8026f255577c02E379A69bb   [CA주소]
 const Counter = ({ web3, account }) => {
   const [count, setCount] = useState(0);
   const [deployed, setDeployed] = useState();
 
+  const getCount = useCallback(async () => {
+    const _count = (await axios.post("http://localhost:8080/api/count")).data
+      .count;
+    setCount(_count);
+  }, []);
+
   useEffect(() => {
+    getCount();
     (async () => {
-      if (deployed) return;
-
-      const CounterContract = (
-        await axios.post(
-          "http://localhost:8080/api/contract/CounterContract",
-          {}
-        )
-      ).data;
-
-      // console.log("CounterContract", CounterContract);
-      const networkId = CounterContract.networkId;
-      // console.log("networkId", networkId);
-      const CA = CounterContract.to;
-      const abi = CounterContract.abi;
-      const _deployed = new web3.eth.Contract(abi, CA);
-      setDeployed(_deployed);
-      // console.log("매개변수 _deployed", _deployed);
-
-      const _count = await _deployed.methods.current().call();
-      setCount(parseInt(_count));
-      // console.log("매개변수 _count", _count);
-
+      const { CA } = (await axios.post("http://localhost:8080/api/ca")).data;
       web3.eth.subscribe("logs", { address: CA }).on("data", (log) => {
-        // console.log("들어왔다.");
-        console.log(log);
-        const params = [{ type: "uint256", name: "count" }];
+        const params = [{ type: "int256", name: "count" }];
         const value = web3.eth.abi.decodeLog(params, log.data);
-        console.log(value);
+        console.log("value", value);
         setCount(value.count);
       });
     })();
@@ -42,15 +26,19 @@ const Counter = ({ web3, account }) => {
 
   const increment = async () => {
     const data = (
-      await axios.post("http://localhost:8080/api/contract/increment", {
+      await axios.post("http://localhost:8080/api/increment", {
         from: account,
       })
     ).data;
-    console.log("from : account", data);
     await web3.eth.sendTransaction(data);
   };
   const decrement = async () => {
-    const result = await deployed.methods.decrement().send({ from: account });
+    const data = (
+      await axios.post("http://localhost:8080/api/decrement", {
+        from: account,
+      })
+    ).data;
+    await web3.eth.sendTransaction(data);
   };
   return (
     <>

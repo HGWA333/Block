@@ -1,12 +1,14 @@
 import useWeb3 from "../../useWeb3";
 import axios from "axios";
 import * as THREE from "three";
+import Lect6 from "../why/Box/Box";
+import FlagTest from "../why/Flag/Flag";
 import { useRef, useState, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Text, TrackballControls } from "@react-three/drei";
 import { TestApi } from "../../api/api";
-import { Scene } from "three";
 
+import { Scene } from "three";
 function Word({ name, query, mutation, setCount, children, ...props }) {
   const color = new THREE.Color();
   const fontProps = {
@@ -89,26 +91,48 @@ function Cloud({ tempArr, radius, query, mutation, setCount }) {
 
 export default function WordTest({ name }) {
   const [web3, account] = useWeb3();
-  const [ca, setCA] = useState("");
-  const [net, setNet] = useState("");
+  const [ca, setCA] = useState();
+  const [coun, setCoun] = useState();
+  const [host, setHost] = useState();
+  const [time, setTime] = useState();
+  const [data, setData] = useState();
+  const [main, setMain] = useState();
+  const [block, setBlock] = useState();
+  const [netId, setNetId] = useState();
+  const [signature, setSignature] = useState();
 
   useEffect(() => {
     (async () => {
-      const CounterContract = (
-        await axios.post(
-          "http://localhost:8080/api/contract/CounterContract",
-          {}
-        )
+      const ContractContents = (
+        await axios.post("http://localhost:8080/api/CounterContract")
       ).data;
 
-      console.log("CounterContract", CounterContract);
-      const networkId = CounterContract.networkId;
-      console.log("networkId", networkId);
-      const CA = CounterContract.to;
-      setCA(CA);
-      setNet(networkId);
+      const ContractData = () => {
+        console.log("Contract", ContractContents);
+        const CA = ContractContents.CA;
+        const data = ContractContents.data;
+        const count = ContractContents.count;
+        const networkId = ContractContents.networkId;
+        const deployed = ContractContents.deployed;
+        const abi = ContractContents.abi;
+        const host = JSON.stringify(deployed.currentProvider.host);
+        const blTime = JSON.stringify(deployed.blockHeaderTimeout);
+        const defaultBlock = JSON.stringify(deployed.defaultBlock);
+        const sig = abi[1].signature;
+        console.log("deployed", deployed);
+        console.log("abi", abi);
+        setCA(CA);
+        setHost(host);
+        setCoun(count);
+        setNetId(networkId);
+        setData(data);
+        setSignature(sig);
+        setTime(blTime);
+        setBlock(defaultBlock);
+      };
+      setMain(ContractData);
     })();
-  }, []);
+  }, [main]);
 
   const query = TestApi.useGetCountQuery({ name });
   const mutation = TestApi.useSetCountMutation();
@@ -128,7 +152,13 @@ export default function WordTest({ name }) {
   const tempArr = [
     [[`Account : ${account}`]],
     [[`CA : ${ca}`]],
-    [[`NetworkID : ${net}`]],
+    [[`NetworkID : ${netId}`]],
+    [[`host : ${host}`]],
+    [[`Count : ${coun}`]],
+    [[`Data : ${data}`]],
+    [[`Signature : ${signature}`]],
+    [[`BlockHeader Timeout : ${time}`]],
+    [[`DefaultBlock : ${block}`]],
     // [[account]],
     // [[account]],
     // [[account]],
@@ -151,17 +181,30 @@ export default function WordTest({ name }) {
   ];
 
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }}>
-      <fog attach="fog" args={["#202025", 0, 80]} />
-      <Cloud
-        tempArr={tempArr}
-        count={8}
-        radius={20}
-        query={query}
-        mutation={mutation}
-        setCount={setCount}
-      />
-      <TrackballControls />
-    </Canvas>
+    <>
+      <Canvas
+        style={{ width: "100vw", height: "100vh" }}
+        dpr={[1, 2]}
+        camera={{
+          position: [0, 0, 35],
+          fov: 90,
+          aspect: window.innerWidth / window.innerHeight,
+          near: 0.1,
+        }}
+      >
+        <fog attach="fog" args={["#202025", 0, 80]} />
+        <color attach="background" args={["#fbfbf6"]} />
+        <Cloud
+          tempArr={tempArr}
+          count={8}
+          radius={20}
+          query={query}
+          mutation={mutation}
+          setCount={setCount}
+        />
+        <TrackballControls />
+      </Canvas>
+      {/* <Lect6 /> */}
+    </>
   );
 }

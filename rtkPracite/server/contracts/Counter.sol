@@ -11,7 +11,7 @@ contract Counter {
     count = 0;
   }
 
-  function current() public view returns (uint256) {
+  function getCount() public view returns (uint256) {
     return count;
   }
 

@@ -8,7 +8,6 @@ function App() {
   return (
     <>
       <div>
-        {/* <h1>Account : {account}</h1> */}
         <Counter web3={web3} account={account} />
       </div>
       <Word></Word>
