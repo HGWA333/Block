@@ -6,10 +6,51 @@ import FlagTest from "../why/Flag/Flag";
 import { useRef, useState, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Text, TrackballControls } from "@react-three/drei";
-import { TestApi } from "../../api/api";
 
-import { Scene } from "three";
-function Word({ name, query, mutation, setCount, children, ...props }) {
+export function Word({ item, account, web3, children, ...props }) {
+  const [vote, setVote] = useState(0);
+  useEffect(() => {
+    (async () => {
+      const result = await axios.post("http://localhost:8080/api/send", {
+        method: "totalVotesFor",
+        item,
+      });
+      console.log("result", result);
+      setVote(result.data.totalVotesFor);
+      web3.eth
+        .subscribe("logs", { address: result.data.CA })
+        .on("data", (log) => {
+          const params = [
+            { type: "string", name: "candidate" },
+            { type: "uint", name: "votes" },
+          ];
+          const value = web3.eth.abi.decodeLog(params, log.data);
+
+          console.log("value", value);
+          console.log(
+            "value.candidate, item, value.votes",
+            value.candidate,
+            item,
+            value.votes
+          );
+
+          if (value.candidate == item) {
+            setVote(value.votes);
+            console.log("value.votes", value.votes);
+          }
+        });
+    })();
+  }, []);
+
+  const onClick = async () => {
+    const result = await axios.post("http://localhost:8080/api/send", {
+      method: "voteForCandidate",
+      candidate: item,
+      from: account,
+    });
+    web3.eth.sendTransaction(result.data);
+  };
+
   const color = new THREE.Color();
   const fontProps = {
     // fontFamily: "ffProExtraLight",
@@ -24,8 +65,7 @@ function Word({ name, query, mutation, setCount, children, ...props }) {
   const out = () => setHover(false);
 
   useEffect(() => {
-    console.log("useEffect 호버 했다.");
-    //;
+    // console.log("useEffect 호버 했다.");
     if (hover) document.body.style.cursor = "pointer";
     return () => (document.body.style.cursor = "auto");
   }, [hover]);
@@ -45,20 +85,33 @@ function Word({ name, query, mutation, setCount, children, ...props }) {
         {...props}
         {...fontProps}
         children={children}
-        onClick={async () => {
-          // console.log("클릭했다.", children);
-          await setCount({
-            name: "test",
-            value: `${children}님이 클릭했습니다.`,
-            test: `${children}님이 현기증 난다고 빨리 확인해달래요`,
-          });
-        }}
+        onClick={onClick}
       />
     </>
   );
 }
 
-function Cloud({ tempArr, radius, query, mutation, setCount }) {
+export function Cloud({ item, radius }) {
+  const tempArr = [
+    [[`NetworkID : ${item}`]],
+    // [[`host : ${host}`]],
+    // [[`Count : ${coun}`]],
+    // [[`Data : ${data}`]],
+    // [[`Signature : ${signature}`]],
+    // [[`BlockHeader Timeout : ${time}`]],
+    // [[`DefaultBlock : ${block}`]],
+    // ["1", "1", "1", "1", "1", "1"],
+    // ["7", "7", "7", "7", "7", "7"],
+    // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
+    // ["4", "4", "4", "4", "4", "4", "4", "4"],
+    // ["5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5"],
+    // ["4", "4", "4", "4", "4", "4", "4", "4"],
+    // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
+    // ["2", "2", "2", "2", "2", "2"],
+    // ["1", "1", "1", "1", "1", "1"],
+    // [[account]],
+  ];
+
   const words = useMemo(() => {
     const temp = [];
     const spherical = new THREE.Spherical();
@@ -78,107 +131,32 @@ function Cloud({ tempArr, radius, query, mutation, setCount }) {
     return temp;
   }, [radius]);
   return words.map(([pos, word], index) => (
-    <Word
-      key={index}
-      position={pos}
-      children={word}
-      query={query}
-      mutation={mutation}
-      setCount={setCount}
-    />
+    <Word key={index} position={pos} children={word} />
   ));
 }
 
-export default function WordTest({ name }) {
-  const [web3, account] = useWeb3();
-  const [ca, setCA] = useState();
-  const [coun, setCoun] = useState();
-  const [host, setHost] = useState();
-  const [time, setTime] = useState();
-  const [data, setData] = useState();
-  const [main, setMain] = useState();
-  const [block, setBlock] = useState();
-  const [netId, setNetId] = useState();
-  const [signature, setSignature] = useState();
+export default function WordTest() {
+  // console.log("candidateList::::", candidateList);
 
-  useEffect(() => {
-    (async () => {
-      const ContractContents = (
-        await axios.post("http://localhost:8080/api/CounterContract")
-      ).data;
-
-      const ContractData = () => {
-        console.log("Contract", ContractContents);
-        const CA = ContractContents.CA;
-        const data = ContractContents.data;
-        const count = ContractContents.count;
-        const networkId = ContractContents.networkId;
-        const deployed = ContractContents.deployed;
-        const abi = ContractContents.abi;
-        const host = JSON.stringify(deployed.currentProvider.host);
-        const blTime = JSON.stringify(deployed.blockHeaderTimeout);
-        const defaultBlock = JSON.stringify(deployed.defaultBlock);
-        const sig = abi[1].signature;
-        console.log("deployed", deployed);
-        console.log("abi", abi);
-        setCA(CA);
-        setHost(host);
-        setCoun(count);
-        setNetId(networkId);
-        setData(data);
-        setSignature(sig);
-        setTime(blTime);
-        setBlock(defaultBlock);
-      };
-      setMain(ContractData);
-    })();
-  }, [main]);
-
-  const query = TestApi.useGetCountQuery({ name });
-  const mutation = TestApi.useSetCountMutation();
-  const setCount = mutation[0];
-
-  const light = new THREE.DirectionalLight(0xffe4ff, 0.8);
-  const scene = new THREE.Scene();
-  scene.add(light);
-
-  const helper = new THREE.DirectionalLightHelper(light, 5);
-  scene.add(helper);
-
-  if (query.isLoading) {
-    return <>Loading</>;
-  }
-
-  const tempArr = [
-    [[`Account : ${account}`]],
-    [[`CA : ${ca}`]],
-    [[`NetworkID : ${netId}`]],
-    [[`host : ${host}`]],
-    [[`Count : ${coun}`]],
-    [[`Data : ${data}`]],
-    [[`Signature : ${signature}`]],
-    [[`BlockHeader Timeout : ${time}`]],
-    [[`DefaultBlock : ${block}`]],
-    // [[account]],
-    // [[account]],
-    // [[account]],
-    // [[account]],
-    // [[account]],
-    // [[account]],
-    // [[account]],
-    // [[account]],
-    // [[account]],
-    // ["1", "1", "1", "1", "1", "1"],
-    // ["7", "7", "7", "7", "7", "7"],
-    // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
-    // ["4", "4", "4", "4", "4", "4", "4", "4"],
-    // ["5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5"],
-    // ["4", "4", "4", "4", "4", "4", "4", "4"],
-    // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
-    // ["2", "2", "2", "2", "2", "2"],
-    // ["1", "1", "1", "1", "1", "1"],
-    // [[account]],
-  ];
+  // const tempArr = [
+  //   // [[`NetworkID : {netId}`]],
+  //   // [[`host : ${host}`]],
+  //   // [[`Count : ${coun}`]],
+  //   // [[`Data : ${data}`]],
+  //   // [[`Signature : ${signature}`]],
+  //   // [[`BlockHeader Timeout : ${time}`]],
+  //   // [[`DefaultBlock : ${block}`]],
+  //   // ["1", "1", "1", "1", "1", "1"],
+  //   // ["7", "7", "7", "7", "7", "7"],
+  //   // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
+  //   // ["4", "4", "4", "4", "4", "4", "4", "4"],
+  //   // ["5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5"],
+  //   // ["4", "4", "4", "4", "4", "4", "4", "4"],
+  //   // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
+  //   // ["2", "2", "2", "2", "2", "2"],
+  //   // ["1", "1", "1", "1", "1", "1"],
+  //   // [[account]],
+  // ];
 
   return (
     <>
@@ -194,14 +172,7 @@ export default function WordTest({ name }) {
       >
         <fog attach="fog" args={["#202025", 0, 80]} />
         <color attach="background" args={["#fbfbf6"]} />
-        <Cloud
-          tempArr={tempArr}
-          count={8}
-          radius={20}
-          query={query}
-          mutation={mutation}
-          setCount={setCount}
-        />
+        <Cloud count={8} radius={20} />
         <TrackballControls />
       </Canvas>
       {/* <Lect6 /> */}
