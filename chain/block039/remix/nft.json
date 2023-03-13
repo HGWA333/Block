@@ -1,0 +1,15 @@
+{
+  "name": "test NFT",
+  "description": "testing NFT with Pinata",
+  "image": "https://gateway.pinata.cloud/ipfs/QmcsstUVYRHxbLNx1XpKWz6VbqLa6D3Ub4SrrED3UwNy1N",
+  "attributes": [
+    {
+      "trait_type": "Rank",
+      "value": 1
+    },
+    {
+      "trait_type": "Type",
+      "value": 1
+    }
+  ]
+}
