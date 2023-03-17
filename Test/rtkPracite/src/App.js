@@ -41,6 +41,7 @@ function App() {
           <Cloud item={item} />
         </>
       ))}
+      <Word />
     </>
   );
 }

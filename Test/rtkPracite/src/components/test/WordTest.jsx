@@ -7,19 +7,7 @@ import { useRef, useState, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Text, TrackballControls } from "@react-three/drei";
 
-export function Word({
-  vote,
-  candidateList,
-  web3,
-  account,
-  item,
-  onClick,
-  children,
-  ...props
-}) {
-  console.log("item", item);
-  console.log("candidateList", candidateList);
-
+export function Word({ children, ...props }) {
   const color = new THREE.Color();
   const fontProps = {
     // fontFamily: "ffProExtraLight",
@@ -54,22 +42,12 @@ export function Word({
         {...props}
         {...fontProps}
         children={children}
-        onClick={onClick}
       />
     </>
   );
 }
 
-export function Cloud({
-  tempArr,
-  radius,
-  onClick,
-  item,
-  web3,
-  account,
-  candidateList,
-  vote,
-}) {
+export function Cloud({ tempArr, radius }) {
   const words = useMemo(() => {
     const temp = [];
     const spherical = new THREE.Spherical();
@@ -89,76 +67,20 @@ export function Cloud({
     return temp;
   }, [radius]);
   return words.map(([pos, word], index) => (
-    <Word
-      key={index}
-      position={pos}
-      children={word}
-      onClick={onClick}
-      item={item}
-      web3={web3}
-      account={account}
-      candidateList={candidateList}
-      vote={vote}
-    />
+    <Word key={index} position={pos} children={word} />
   ));
 }
 
-export default function WordTest({ candidateList, account, web3, item }) {
+export default function WordTest() {
   const [vote, setVote] = useState(0);
 
-  // console.log("candidateList::::", candidateList);
-
-  useEffect(() => {
-    (async () => {
-      const result = await axios.post("http://localhost:8080/api/send", {
-        method: "totalVotesFor",
-        item,
-      });
-
-      setVote(result.data.totalVotesFor);
-      web3.eth
-        .subscribe("logs", { address: result.data.CA })
-        .on("data", (log) => {
-          const params = [
-            { type: "string", name: "candidate" },
-            { type: "uint", name: "votes" },
-          ];
-          const value = web3.eth.abi.decodeLog(params, log.data);
-          console.log("value", value);
-          console.log(
-            "value.candidate, item, value.votes",
-            value.candidate,
-            item,
-            value.votes
-          );
-
-          if (value.candidate == item) {
-            setVote(value.votes);
-            console.log("value.votes", value.votes);
-          }
-        });
-    })();
-  }, []);
-
-  const onClick = async () => {
-    const result = await axios.post(
-      "http://localhost:8080/api/send",
-      {
-        method: "voteForCandidate",
-        candidate: item,
-        from: account,
-      },
-      console.log("item", item)
-    );
-    web3.eth.sendTransaction(result.data);
-  };
-
   const tempArr = [
-    [`Account : ${account}  Menu : ${candidateList[0]} vote : ${vote}`],
-    [` ${candidateList[1]} : ${vote}`],
-    [` ${candidateList[2]} : ${vote}`],
-    [` ${candidateList[3]} : ${vote}`],
+    ["hihihihihi", "hohohohoho", "huhuhuhu", "1", "1", "1"],
 
+    // [`Account : ${account}  Menu : ${candidateList[0]} vote : ${vote}`],
+    // [` ${candidateList[1]} : ${vote}`],
+    // [` ${candidateList[2]} : ${vote}`],
+    // [` ${candidateList[3]} : ${vote}`],
     // [[`NetworkID : {netId}`]],
     // [[`host : ${host}`]],
     // [[`Count : ${coun}`]],
@@ -166,15 +88,7 @@ export default function WordTest({ candidateList, account, web3, item }) {
     // [[`Signature : ${signature}`]],
     // [[`BlockHeader Timeout : ${time}`]],
     // [[`DefaultBlock : ${block}`]],
-    // ["1", "1", "1", "1", "1", "1"],
-    // ["7", "7", "7", "7", "7", "7"],
-    // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
-    // ["4", "4", "4", "4", "4", "4", "4", "4"],
-    // ["5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5", "5"],
-    // ["4", "4", "4", "4", "4", "4", "4", "4"],
-    // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
-    // ["2", "2", "2", "2", "2", "2"],
-    // ["1", "1", "1", "1", "1", "1"],
+
     // [[account]],
   ];
 
@@ -192,17 +106,7 @@ export default function WordTest({ candidateList, account, web3, item }) {
       >
         <fog attach="fog" args={["#202025", 0, 80]} />
         <color attach="background" args={["#fbfbf6"]} />
-        <Cloud
-          tempArr={tempArr}
-          count={8}
-          radius={20}
-          onClick={onClick}
-          item={item}
-          web3={web3}
-          account={account}
-          candidateList={candidateList}
-          vote={vote}
-        />
+        <Cloud tempArr={tempArr} count={8} radius={20} />
         <TrackballControls />
       </Canvas>
       {/* <Lect6 /> */}

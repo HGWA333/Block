@@ -93,14 +93,14 @@ export function Word({ item, account, web3, children, ...props }) {
 
 export function Cloud({ item, radius }) {
   const tempArr = [
-    [[`NetworkID : ${item}`]],
+    // [[`NetworkID : ${item}`]],
     // [[`host : ${host}`]],
     // [[`Count : ${coun}`]],
     // [[`Data : ${data}`]],
     // [[`Signature : ${signature}`]],
     // [[`BlockHeader Timeout : ${time}`]],
     // [[`DefaultBlock : ${block}`]],
-    // ["1", "1", "1", "1", "1", "1"],
+    ["1", "1", "1", "1", "1", "1"],
     // ["7", "7", "7", "7", "7", "7"],
     // ["3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"],
     // ["4", "4", "4", "4", "4", "4", "4", "4"],
